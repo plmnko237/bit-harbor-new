@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aws": "^0.0.3-2",
+    "aws-sdk": "^2.1502.0",
+    "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "react-router-dom": "^6.20.0"
   }
 }

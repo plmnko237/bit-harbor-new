@@ -1,95 +1,65 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Link from "next/link";
+import KnowledgeCard from "./KnowledgeCard";
+import QnaCard from "./QnaCard";
+import CommunityCard from "./CommunityCard";
+import awsData from "@/util/database";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
+    <main>
+      <section className="main-visual">
+        <div className="maintxt">
+          <h2>개발자를 위한 공간.</h2>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            이곳은 개발자들을 위한 공간입니다.
+            <br />
+            자유롭게 탐색하고, 유용한 정보들을 찾아가세요.
+            <br />
+            당신의 지식을 나누어주세요.
+            <br />
+            개발에 대한 정보라면 어떤 것이든 환영합니다.
           </p>
-        </a>
-      </div>
+          <button className="mainBtn">
+            <span className="mainBtnIcon">🙌</span>
+            <span>BitHarbor와 함께하기</span>
+          </button>
+        </div>
+      </section>
+      <section className="secCon" style={{ paddingTop: "80px" }}>
+        <div className="secMenu">
+          <h3>지식</h3>
+          <Link href={"/"}>전체</Link>
+          <Link href={"/"}>Tech뉴스</Link>
+          <Link href={"/"}>팁</Link>
+          <Link href={"/"}>칼럼</Link>
+          <Link href={"/"}>리뷰</Link>
+        </div>
+        {/* <div className="cardList">
+          <KnowledgeCard awsData={awsData} />
+        </div> */}
+      </section>
+      <section className="secCon">
+        <div className="secMenu">
+          <h3 style={{ fontFamily: "Inter", letterSpacing: 0 }}>Q&amp;A</h3>
+          <Link href={"/"}>기술</Link>
+          <Link href={"/"}>커리어</Link>
+          <Link href={"/"}>기타</Link>
+          <Link href={"/"}>전체</Link>
+        </div>
+        {/* <div className="cardList">
+          <QnaCard awsData={awsData} />
+        </div> */}
+      </section>
+      <section className="secCon" style={{ marginBottom: "80px" }}>
+        <div className="secMenu">
+          <h3>커뮤니티</h3>
+          <Link href={"/"}>질문&amp;답변</Link>
+          <Link href={"/"}>모임&amp;스터디</Link>
+        </div>
+        {/* <div className="cardList">
+          <CommunityCard awsData={awsData} />
+        </div> */}
+      </section>
     </main>
-  )
+  );
 }
