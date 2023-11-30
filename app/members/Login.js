@@ -6,14 +6,14 @@ export default function Login() {
       <h3 className="formTit">Login</h3>
       <div className="inputBox">
         <input
-          type="text"
-          name="user_id"
+          type="email"
+          name="email"
           autofocus="autofocus"
-          placeholder="아이디 입력"
+          placeholder="이메일 입력"
         />
       </div>
       <div className="inputBox">
-        <input type="password" name="user_pw" placeholder="비밀번호 입력" />
+        <input type="password" name="password" placeholder="비밀번호 입력" />
       </div>
       <button type="submit" id="submitBtn">
         로그인

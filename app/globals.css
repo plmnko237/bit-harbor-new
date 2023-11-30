@@ -38,6 +38,9 @@ button {
   font-family: "Noto Sans KR", sans-serif;
   box-sizing: border-box;
 }
+button {
+  cursor: pointer;
+}
 img {
   display: block;
   box-sizing: border-box;
@@ -216,6 +219,7 @@ main {
 }
 
 .secMenu {
+  width: 282px;
   display: flex;
   align-items: flex-end;
   gap: 20px;
@@ -645,7 +649,7 @@ main {
 }
 .tag {
   border-radius: 25px;
-  background: #ddd;
+  background: #eee;
   padding: 4px 12px;
   font-size: 12px;
   font-style: normal;
@@ -681,6 +685,166 @@ main {
   filter: invert(18%) sepia(95%) saturate(6777%) hue-rotate(252deg)
     brightness(88%) contrast(92%);
 }
+/* 상세페이지(Detail) */
+.detailCon {
+  width: 82.5rem;
+  min-height: 500px;
+  height: fit-content;
+  margin: 0 auto;
+  color: #373f41;
+}
+.detail_title {
+  padding: 32px 20px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.detail_title h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%; /* 22.4px */
+  text-transform: capitalize;
+  color: #737b7d;
+}
+.crumbs {
+  display: flex;
+  height: fit-content;
+  justify-content: space-between;
+  align-items: center;
+}
+.crumbs > span {
+  color: var(--black-40, rgba(0, 0, 0, 0.4));
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.crumbs > .card_detail {
+  width: fit-content;
+  gap: 12px;
+}
+.detailTxt {
+  width: 100%;
+  height: fit-content;
+  padding: 40px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.detailComments {
+  width: 100%;
+  height: fit-content;
+  padding: 32px 20px;
+  background-color: #66619105;
+  margin: 40px 0;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+.detailComments > h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%; /* 22.4px */
+  text-transform: capitalize;
+  color: #737b7d;
+  padding-bottom: 20px;
+}
+.commit {
+  width: 100%;
+  height: fit-content;
+  padding: 20px 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.commit > p {
+  padding: 20px 0;
+  font-size: 14px;
+  color: #373f41;
+}
+/* 글작성 폼 */
+.writeForm {
+  width: 82.5rem;
+  height: fit-content;
+  min-height: 780px;
+  padding: 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  color: #373f41;
+}
+.writeForm > h4 {
+  font-family: "Noto sans KR", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%; /* 22.4px */
+  text-transform: capitalize;
+  color: #737b7d;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+.postTitle {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 0 20px 20px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.postTitle > input {
+  width: 80.3%;
+  font-size: 1rem;
+  color: #373f41;
+  border: none;
+}
+.cartegory {
+  width: 170px;
+  padding: 6px 8px;
+  border: none;
+  border-bottom: 2px solid #4730d9;
+}
+.postBody {
+  width: 100%;
+  height: fit-content;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+.tox-tinymce {
+  height: 550px !important;
+}
+.tox .tox-menubar {
+  gap: 12px;
+}
+.tagarea {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 0 20px;
+}
+.tagarea input {
+  width: 80%;
+  line-height: 24px;
+  padding: 5px;
+  box-sizing: border-box;
+  border: none;
+}
+.formBtn {
+  margin: 50px auto;
+  padding: 12px 42px;
+  font-size: 16px;
+  color: #4730d9;
+  font-weight: 700;
+  letter-spacing: -0.05rem;
+  background-color: #fff;
+  border-radius: 50px;
+  border: 2px solid #4730d9;
+  transition: all 0.3s;
+}
+.formBtn:hover {
+  background-color: #4730d9;
+  color: #fff;
+}
 /* footer */
 footer {
   display: flex;
@@ -693,7 +857,7 @@ footer {
 footer p {
   color: var(--black-40, rgba(0, 0, 0, 0.4));
   /* Body/P12 */
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;

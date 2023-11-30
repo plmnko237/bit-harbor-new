@@ -6,23 +6,31 @@ export default function Signup() {
       <h3 className="formTit">Sign Up</h3>
       <div className="inputBox">
         <input
-          type="text"
-          name="user_id"
+          type="email"
+          name="email"
           autofocus="autofocus"
-          placeholder="아이디 입력"
+          placeholder="이메일주소"
         />
       </div>
       <div className="inputBox">
-        <input type="text" name="user_name" placeholder="이름" />
+        <input type="text" name="userName" placeholder="이름" />
       </div>
       <div className="inputBox">
-        <input type="email" name="email" placeholder="이메일" />
+        <input type="password" name="password" placeholder="비밀번호" />
       </div>
       <div className="inputBox">
-        <input type="password" name="user_pw" placeholder="비밀번호" />
+        <input
+          type="password"
+          name="checkPassword"
+          placeholder="비밀번호 확인"
+        />
       </div>
       <div className="inputBox">
-        <input type="password" name="user_pw" placeholder="비밀번호 확인" />
+        <input
+          type="tel"
+          name="phoneNumber"
+          placeholder="전화번호 입력(예:010-1234-5678)"
+        />
       </div>
       <button type="submit" id="submitBtn">
         회원가입

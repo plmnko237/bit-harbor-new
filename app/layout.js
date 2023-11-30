@@ -23,17 +23,17 @@ export default function RootLayout({ children }) {
             <nav id="gnb">
               <ul>
                 <li>
-                  <Link href={"/"}>Q&amp;A</Link>
+                  <Link href={"/qna"}>Q&amp;A</Link>
                 </li>
                 <li>
-                  <Link href={"/"}>지식</Link>
+                  <Link href={"/knowledge"}>지식</Link>
                 </li>
                 <li>
-                  <Link href={"/community/1"}>커뮤니티</Link>
+                  <Link href={"/community"}>커뮤니티</Link>
                 </li>
               </ul>
             </nav>
-            <Link href={"/account"}>
+            <Link href={"/members"}>
               <button className="login">
                 <img src="/person.svg" alt="login" />
                 <span>로그인</span>
