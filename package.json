@@ -12,6 +12,7 @@
     "@tinymce/tinymce-react": "^4.3.2",
     "aws": "^0.0.3-2",
     "aws-sdk": "^2.1502.0",
+    "lodash": "^4.17.21",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",

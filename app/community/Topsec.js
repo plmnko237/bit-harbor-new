@@ -13,14 +13,14 @@ export default function TopSec() {
           <input
             type="text"
             name="search"
-            autoFocus="autofocus"
+            autoFocus="true"
             placeholder="검색어를 입력해주세요."
           />
           <button type="submit">
             <img src="/search.png" alt="검색" />
           </button>
         </div>
-        <Link href={"/"} className="writeBtn">
+        <Link href={"/community/write"} className="writeBtn">
           <img src="/pen.png" />
           글쓰기
         </Link>
