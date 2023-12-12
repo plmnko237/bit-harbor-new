@@ -2,9 +2,11 @@ import Link from "next/link";
 import KnowledgeCard from "./KnowledgeCard";
 import QnaCard from "./QnaCard";
 import CommunityCard from "./CommunityCard";
-import awsData from "@/util/database";
+import { fetchData } from "@/util/database";
 
-export default function Home() {
+export default async function Home() {
+  let dbData = await fetchData();
+  console.log(dbData);
   return (
     <main>
       <section className="main-visual">
@@ -56,9 +58,15 @@ export default function Home() {
           <Link href={"/"}>질문&amp;답변</Link>
           <Link href={"/"}>모임&amp;스터디</Link>
         </div>
-        {/* <div className="cardList">
-          <CommunityCard awsData={awsData} />
-        </div> */}
+        <div className="cardList">
+          {dbData.map((a, i) => {
+            if (i <= 3) {
+              return <CommunityCard dbData={dbData} i={i} key={i} />;
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
     </main>
   );

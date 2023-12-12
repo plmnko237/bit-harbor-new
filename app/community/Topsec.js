@@ -6,6 +6,7 @@ export default function TopSec() {
       <p>당신의 지식을 공유하고 새로운 아이디어를 얻어보세요.</p>
       <div className="topSec_detail">
         <div className="secMenu">
+          <Link href={"/"}>전체</Link>
           <Link href={"/"}>질문&amp;답변</Link>
           <Link href={"/"}>모임&amp;스터디</Link>
         </div>

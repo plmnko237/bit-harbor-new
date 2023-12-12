@@ -1,9 +1,30 @@
 "use client";
+import Link from "next/link";
+import { useState } from "react";
+import axios from "axios";
+
 export default function List({ dbData, i }) {
+  let [view, setview] = useState(0);
   return (
     <li className="conList" key={i}>
       <div className="conList-top">
-        <p>{dbData[i].title}</p>
+        <Link
+          prefetch={false}
+          href={"/community/detail/" + dbData[i].communityId}
+          onClick={() => {
+            // axios
+            //   .get("https://7651-118-32-224-80.ngrok-free.app/community/1")
+            //   .then((결과) => {
+            //     console.log(결과);
+            //   })
+            //   .catch(() => {
+            //     console.log("실패함 ㅅㄱ");
+            //   });
+          }}
+        >
+          {/* 제목부분 */}
+          <p>{dbData[i].title}</p>
+        </Link>
         <div className="card_detail">
           <div className="nickname">
             <img src="/user_icon.png" alt="닉네임" />
@@ -25,7 +46,7 @@ export default function List({ dbData, i }) {
         {dbData[i].tags.map((a, i) => {
           return (
             <div className="tag" key={i}>
-              {dbData[i].tags[i]}
+              {a}
             </div>
           );
         })}

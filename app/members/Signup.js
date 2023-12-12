@@ -16,6 +16,9 @@ export default function Signup() {
         <input type="text" name="userName" placeholder="이름" />
       </div>
       <div className="inputBox">
+        <input type="text" name="userNickname" placeholder="닉네임" />
+      </div>
+      <div className="inputBox">
         <input type="password" name="password" placeholder="비밀번호" />
       </div>
       <div className="inputBox">

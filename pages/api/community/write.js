@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       console.log("4:" + result);
 
       const apiResponse = await fetch(
-        "https://4a14-118-32-224-80.ngrok-free.app/community",
+        "https://7651-118-32-224-80.ngrok-free.app/community",
         {
           method: "POST",
           headers: {

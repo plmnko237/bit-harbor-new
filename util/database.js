@@ -1,30 +1,38 @@
-// const [awsData, setAwsData] = useState(null);
+let dbData;
 
-// useEffect(() => {
-//   // AWS 서버로부터 데이터 가져오기
-//   const fetchData = async () => {
-//     try {
-//       const response = fetch(
-//         "https://1061-118-32-224-80.ngrok-free.app/community/1",
-//         {
-//           method: "GET", // 또는 다른 HTTP 메서드
-//           headers: {
-//             "Content-Type": "application/json",
-//             "ngrok-skip-browser-warning": "69420",
-//           },
-//         }
-//       );
-//       const data = await response.json();
-//       setAwsData(data);
-//     } catch (error) {
-//       console.error("Error fetching data from AWS server:", error);
-//     }
-//   };
+export const fetchData = async () => {
+  try {
+    const response = await fetch(
+      "https://7651-118-32-224-80.ngrok-free.app/community",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
+        mode: "cors",
+        cache: "no-store",
+      }
+    );
 
-//   fetchData();
-// }, []);
+    if (response.status === 200) {
+      const result = await response.json();
+      const reversedData = result.data.reverse(); // 데이터를 역순으로 정렬
+      //console.log("Fetched data:", reversedData); // 데이터를 콘솔에 출력
+      dbData = reversedData; // dbData에 데이터를 할당
+      return reversedData;
+    } else {
+      console.error("Failed to fetch data. Status:", response.status);
+      dbData = null; // 에러 발생 시 dbData를 null로 설정
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    dbData = null; // 에러 발생 시 dbData를 null로 설정
+    return null;
+  }
+};
 
-// if (!awsData) {
-//   return <div>Loading...</div>;
-// }
-// export default awsData;
+//await fetchData();
+
+export default dbData;
