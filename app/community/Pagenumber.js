@@ -17,7 +17,7 @@ export default async function PageNumber() {
         <button
           onClick={(e) => {
             // fetch(
-            //   "https://7651-118-32-224-80.ngrok-free.app/community?page=0&size=10"
+            //   "https://ba9b-118-32-224-80.ngrok-free.app/community?page=0&size=10"
             // );
           }}
         >

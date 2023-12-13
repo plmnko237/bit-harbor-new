@@ -5,12 +5,7 @@ export default function Login() {
     <form action="" method="post" className="loginBox">
       <h3 className="formTit">Login</h3>
       <div className="inputBox">
-        <input
-          type="email"
-          name="email"
-          autofocus="autofocus"
-          placeholder="이메일 입력"
-        />
+        <input type="email" name="email" autofocus placeholder="이메일 입력" />
       </div>
       <div className="inputBox">
         <input type="password" name="password" placeholder="비밀번호 입력" />

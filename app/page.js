@@ -23,7 +23,9 @@ export default async function Home() {
           </p>
           <button className="mainBtn">
             <span className="mainBtnIcon">🙌</span>
-            <span>BitHarbor와 함께하기</span>
+            <Link href={"/members"}>
+              <span>BitHarbor와 함께하기</span>
+            </Link>
           </button>
         </div>
       </section>
@@ -59,13 +61,14 @@ export default async function Home() {
           <Link href={"/"}>모임&amp;스터디</Link>
         </div>
         <div className="cardList">
-          {dbData.map((a, i) => {
-            if (i <= 3) {
-              return <CommunityCard dbData={dbData} i={i} key={i} />;
-            } else {
-              return null;
-            }
-          })}
+          {dbData &&
+            dbData.map((a, i) => {
+              if (i <= 3) {
+                return <CommunityCard dbData={dbData} i={i} key={i} />;
+              } else {
+                return null;
+              }
+            })}
         </div>
       </section>
     </main>

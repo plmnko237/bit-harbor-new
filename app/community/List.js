@@ -13,7 +13,7 @@ export default function List({ dbData, i }) {
           href={"/community/detail/" + dbData[i].communityId}
           onClick={() => {
             // axios
-            //   .get("https://7651-118-32-224-80.ngrok-free.app/community/1")
+            //   .get("https://ba9b-118-32-224-80.ngrok-free.app/community/1")
             //   .then((결과) => {
             //     console.log(결과);
             //   })

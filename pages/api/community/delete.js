@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
     try {
       const apiResponse = await fetch(
-        "https://7651-118-32-224-80.ngrok-free.app/community/" +
+        "https://ba9b-118-32-224-80.ngrok-free.app/community/" +
           result.communityId +
           "/member/" +
           result.memberId,

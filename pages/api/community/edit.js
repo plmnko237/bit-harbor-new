@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       console.log("4:" + result);
 
       const apiResponse = await fetch(
-        "https://7651-118-32-224-80.ngrok-free.app/community/" +
+        "https://ba9b-118-32-224-80.ngrok-free.app/community/" +
           req.body.communityId,
         {
           method: "PATCH",

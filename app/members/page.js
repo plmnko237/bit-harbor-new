@@ -2,8 +2,10 @@
 import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
+
 export default function Account() {
   let [tab, setTab] = useState(0);
+
   return (
     <div className="loginPage">
       <div className="con">

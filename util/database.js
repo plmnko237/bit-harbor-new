@@ -3,7 +3,7 @@ let dbData;
 export const fetchData = async () => {
   try {
     const response = await fetch(
-      "https://7651-118-32-224-80.ngrok-free.app/community",
+      "https://ba9b-118-32-224-80.ngrok-free.app/community",
       {
         method: "GET",
         headers: {
