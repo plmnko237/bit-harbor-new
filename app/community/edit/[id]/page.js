@@ -1,4 +1,4 @@
-import { fetchData } from "@/util/database";
+import { fetchData } from "@/util/db_community";
 import Textform from "./Textform";
 
 export default function Write(props) {

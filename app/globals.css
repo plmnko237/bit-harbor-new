@@ -99,6 +99,18 @@ header {
 #gnb > ul > li > a:hover {
   color: #4730d9;
 }
+.loginActive {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.loginActive > span {
+  color: #373f41;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Noto Sans KR", sans-serif;
+}
 .login {
   display: flex;
   height: 32px;
@@ -248,7 +260,8 @@ main {
   display: flex;
   width: 100%;
   height: auto;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
@@ -760,7 +773,7 @@ main {
   background-color: #fff;
   color: #888;
   border: 1px solid #bbb;
-  padding: 4px 18px;
+  padding: 3px 18px;
   border-radius: 5px;
   font-size: 14px;
   transition: all 0.3s;

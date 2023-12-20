@@ -1,16 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
+import Image from "next/image";
+import bgImg from "/public/standing.png";
+import { useSession } from "next-auth/react";
 
 export default function Account() {
   let [tab, setTab] = useState(0);
+  const { data: session, status } = useSession();
 
+  useEffect(() => {
+    if (status === "authenticated" && session) {
+      let authorization = session.user.authorization;
+      let refresh = session.user.refresh;
+      localStorage.setItem("authorization", authorization);
+      localStorage.setItem("refresh", refresh);
+    }
+    console.log("세션있냐:", session);
+  }, [status, session]);
+
+  if (status === "loading") {
+    return <div className="loading">Loading...</div>;
+  }
   return (
     <div className="loginPage">
       <div className="con">
         <div className="standing">
-          <img src="standing.png" alt="로그인배너" />
+          <Image src={bgImg} alt="로그인배너" />
         </div>
         <div className="loginForm">
           <div className="btngroup">
@@ -35,7 +52,7 @@ export default function Account() {
               회원가입
             </button>
           </div>
-          {tab == 0 ? <Login /> : tab == 1 ? <Signup /> : null}
+          {tab === 0 ? <Login /> : tab === 1 ? <Signup /> : null}
         </div>
       </div>
     </div>

@@ -1,11 +1,15 @@
+import dynamic from "next/dynamic";
 import TopSec from "./Topsec"; //공통 top영역
-import List from "./List"; //내용 1개
-import { fetchData } from "@/util/database";
-import PageNumber from "./Pagenumber";
-export const revalidate = 20;
-export default async function Community() {
-  const dbData = await fetchData();
+import { fetchData } from "@/util/db_community";
 
+export default async function Community() {
+  const PageNumber = dynamic(() => import("./Pagenumber"), {
+    ssr: false,
+  });
+  const List = dynamic(() => import("./List"), {
+    ssr: false,
+  });
+  const dbData = await fetchData();
   return (
     <main>
       <TopSec />

@@ -1,12 +1,16 @@
 import Link from "next/link";
 import KnowledgeCard from "./KnowledgeCard";
 import QnaCard from "./QnaCard";
-import CommunityCard from "./CommunityCard";
-import { fetchData } from "@/util/database";
+import { fetchData } from "@/util/db_community";
+import { membersData } from "@/util/db_member";
+import dynamic from "next/dynamic";
 
 export default async function Home() {
+  const CommunityCard = dynamic(() => import("./CommunityCard"), {
+    ssr: false,
+  });
   let dbData = await fetchData();
-  console.log(dbData);
+
   return (
     <main>
       <section className="main-visual">

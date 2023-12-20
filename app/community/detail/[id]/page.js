@@ -1,8 +1,14 @@
-import { fetchData } from "@/util/database";
-import Link from "next/link";
-import DelBtn from "./Delbtn";
+import { fetchData } from "@/util/db_community";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import dynamic from "next/dynamic";
 
-export default function Detail(props) {
+export default async function Detail(props) {
+  const EditDelBtn = dynamic(() => import("./EditDelBtn"), {
+    ssr: false,
+  });
+  let session = await getServerSession(authOptions);
+
   const fetchDataAndRender = async () => {
     try {
       //db게시글 불러오는 코드
@@ -14,6 +20,7 @@ export default function Detail(props) {
       if (_id >= 0 && _id <= dbData) {
         const dataItem = dbData.find((item) => item.communityId == _id);
 
+        console.log("memberId:", dataItem.memberId);
         return (
           <main>
             <section className="detailCon">
@@ -22,9 +29,10 @@ export default function Detail(props) {
                 <h2>{dataItem.title}</h2>
                 <div className="crumbs">
                   <span>
-                    {dataItem.postTime === null
-                      ? "오늘 " + dataItem.modifiedAt.slice(11, 16) + "분에"
-                      : dataItem.postTime}{" "}
+                    {dataItem.modifiedAt.slice(0, 10) +
+                      "일 " +
+                      dataItem.modifiedAt.slice(11, 16) +
+                      "분에"}{" "}
                     작성
                   </span>
                   <div className="card_detail">
@@ -51,10 +59,7 @@ export default function Detail(props) {
                 dangerouslySetInnerHTML={{ __html: dataItem.body }}
               ></p>
               {/* 수정, 삭제버튼 */}
-              <div className="edit_detailTxt">
-                <Link href={"../edit/" + dataItem.communityId}>글수정</Link>
-                <DelBtn dataItem={dataItem} />
-              </div>
+              <EditDelBtn dataItem={dataItem} session={session} />
               {/* 댓글영역 */}
               <section className="detailComments">
                 <h4>💬 Comments</h4>
@@ -79,7 +84,7 @@ export default function Detail(props) {
         // Handle the case where id is invalid
         return (
           <main>
-            <p>Invalid ID</p>
+            <div className="loading">loading...</div>
           </main>
         );
       }
@@ -87,7 +92,7 @@ export default function Detail(props) {
       console.error("Error rendering page:", error);
       return (
         <main>
-          <p>Error rendering page</p>
+          <div className="loading">loading...</div>
         </main>
       );
     }

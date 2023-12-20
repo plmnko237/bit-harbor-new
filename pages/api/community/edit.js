@@ -1,4 +1,10 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+
 export default async function handler(req, res) {
+  let session = await getServerSession(req, res, authOptions);
+  console.log("edit api 회원정보:", session);
+
   if (req.method == "POST") {
     console.log(req.body);
 
@@ -10,7 +16,7 @@ export default async function handler(req, res) {
       const tags = req.body.tags.split(",").map((tag) => tag.trim());
       req.body.tags = tags;
       JSON.stringify(req.body.tags);
-      req.body.memberId = 1;
+      req.body.memberId = session.user.memberId;
       req.body.imgURL =
         "https://blue-space-982878.postman.co/workspace/My-Workspace~8d06542c-098f-4e52-815d-360a9893894c/folder/25528870-fb049652-edf8-4eb5-aecf-4d4ad7255c53";
 
@@ -19,13 +25,14 @@ export default async function handler(req, res) {
       console.log("4:" + result);
 
       const apiResponse = await fetch(
-        "https://ba9b-118-32-224-80.ngrok-free.app/community/" +
+        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/" +
           req.body.communityId,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "69420",
+            authorization: session.user.authorization,
+            refresh: session.user.refresh,
           },
           mode: "cors",
           body: result,

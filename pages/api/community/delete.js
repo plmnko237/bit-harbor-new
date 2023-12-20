@@ -1,19 +1,22 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+
 export default async function handler(req, res) {
+  let session = await getServerSession(req, res, authOptions);
+
   if (req.method == "POST") {
     const result = JSON.parse(req.body);
-    result.memberId = 1;
 
     try {
       const apiResponse = await fetch(
-        "https://ba9b-118-32-224-80.ngrok-free.app/community/" +
-          result.communityId +
-          "/member/" +
-          result.memberId,
+        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/" +
+          result.communityId,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "69420",
+            authorization: session.user.authorization,
+            refresh: session.user.refresh,
           },
           mode: "cors",
           body: result,

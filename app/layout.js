@@ -1,8 +1,11 @@
+/*eslint-disable*/
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import LogoutBtn from "./members/LogoutBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { membersData } from "@/util/db_member";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +16,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -36,12 +40,20 @@ export default async function RootLayout({ children }) {
                 </li>
               </ul>
             </nav>
-            <Link href={"/members"}>
-              <button className="login">
-                <img src="/person.svg" alt="login" />
-                <span>로그인</span>
-              </button>
-            </Link>
+
+            {session ? (
+              <div className="loginActive">
+                <span>{session.user.name}님</span>
+                <LogoutBtn />
+              </div>
+            ) : (
+              <Link href={"/members"}>
+                <button className="login">
+                  <img src="/person.svg" alt="login" />
+                  <span>로그인</span>
+                </button>
+              </Link>
+            )}
           </div>
         </header>
         {children}

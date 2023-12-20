@@ -1,38 +1,80 @@
 "use client";
+
+import axios from "axios";
 import { useState } from "react";
 
 export default function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordChk, setPasswordChk] = useState("");
-  // 이메일&비번 정규식
-  const emailRegEx =
-    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-  const passwordRegEx = /^[A-Za-z0-9]{8,16}$/;
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+    checkPassword: "",
+    userName: "",
+    userNickname: "",
+    phoneNumber: "",
+  });
 
-  //이메일체크
-  const emailCheck = (userName) => {
-    emailRegEx.test(userName)
-      ? userName
-      : alert("이메일 형식이 올바르지 않습니다.");
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
   };
-  //비밀번호 형식체크
-  const passwordCheck = (password) => {
-    if (password.match(passwordRegEx) === null) {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // 여기서 조건을 검사하고 조건에 맞지 않으면 alert
+    if (!emailCheck(formValues.email)) {
+      alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+
+    if (!passwordCheck(formValues.password)) {
       alert("비밀번호는 특수문자,숫자포함 8~16자여야 합니다.");
       return;
     }
-  };
-  //비밀번호 확인
-  const passwordDoubleCheck = (password, passwordChk) => {
-    if (password !== passwordChk) {
+
+    if (!passwordDoubleCheck(formValues.password, formValues.checkPassword)) {
       alert("비밀번호가 다릅니다.");
       return;
     }
+
+    // 나머지 필드에 대한 조건 검사 추가
+
+    // 조건이 모두 통과되면 API 호출 또는 다른 작업 수행
+    axios
+      .post("/api/auth/signup", formValues)
+      .then((res) => console.log(res))
+      .catch((error) => {
+        if (error.response) {
+          // 서버가 응답한 상태 코드가 400인 경우
+          console.error("Error Response Data:", error.response.data);
+        } else {
+          // 서버 응답을 받지 못한 경우 (네트워크 문제 등)
+          console.error("Error Message:", error.message);
+        }
+      });
+  };
+
+  const emailCheck = (email) => {
+    const emailRegEx =
+      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+    return emailRegEx.test(email);
+  };
+
+  const passwordCheck = (password) => {
+    const passwordRegEx =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    return passwordRegEx.test(password);
+  };
+
+  const passwordDoubleCheck = (password, checkPassword) => {
+    return password === checkPassword;
   };
 
   return (
-    <form action="/api/auth/signup" method="POST" className="loginBox">
+    <form className="loginBox" onSubmit={handleSubmit}>
       <h3 className="formTit">Sign Up</h3>
       <div className="inputBox">
         <input
@@ -42,14 +84,17 @@ export default function Signup() {
           autoFocus
           placeholder="이메일주소"
           required
-          onBlur={(e) => {
-            setUsername(e.target.value);
-            emailCheck(e.target.value);
-          }}
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputBox">
-        <input type="text" name="userName" placeholder="이름" required />
+        <input
+          type="text"
+          name="userName"
+          placeholder="이름"
+          required
+          onChange={handleInputChange}
+        />
       </div>
       <div className="inputBox">
         <input
@@ -57,6 +102,7 @@ export default function Signup() {
           name="userNickname"
           placeholder="닉네임(공백 없이 입력해주세요.)"
           required
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputBox">
@@ -65,10 +111,7 @@ export default function Signup() {
           name="password"
           placeholder="비밀번호(특수문자,숫자포함 8~16자)"
           required
-          onChange={(e) => {
-            setPassword(e.target.value);
-            passwordCheck(e.target.value);
-          }}
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputBox">
@@ -77,10 +120,7 @@ export default function Signup() {
           name="checkPassword"
           placeholder="비밀번호 확인"
           required
-          onChange={(e) => {
-            setPasswordChk(e.target.value);
-            passwordDoubleCheck(password, e.target.value);
-          }}
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputBox">
@@ -89,6 +129,7 @@ export default function Signup() {
           name="phoneNumber"
           placeholder="전화번호 입력(예:010-1234-5678)"
           required
+          onChange={handleInputChange}
         />
       </div>
       <button type="submit" id="submitBtn">

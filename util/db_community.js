@@ -3,12 +3,11 @@ let dbData;
 export const fetchData = async () => {
   try {
     const response = await fetch(
-      "https://ba9b-118-32-224-80.ngrok-free.app/community",
+      "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community",
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "69420",
         },
         mode: "cors",
         cache: "no-store",

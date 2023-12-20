@@ -53,9 +53,9 @@ const TinyMceContainer = (props) => {
       init={{
         selector: "textarea#file-picker",
         plugins:
-          "mentions anchor autolink charmap codesample emoticons image code link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker a11ychecker typography inlinecss",
+          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
         toolbar:
-          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat code",
+          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
         statusbar: false,
         autocomplete: false,
         forced_root_block: false,
