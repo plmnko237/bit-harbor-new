@@ -20,7 +20,10 @@ export default function Textform() {
   return (
     <>
       <div className="postBody">
-        <TinyMceContainer setBodyText={debouncedSetBodyText} />
+        <TinyMceContainer
+          setBodyText={debouncedSetBodyText}
+          className="tinyEditor"
+        />
         <input
           name="body"
           defaultValue={bodyText}

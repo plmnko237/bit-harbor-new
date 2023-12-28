@@ -1,22 +1,30 @@
 import dynamic from "next/dynamic";
-import Link from "next/link";
 
 export default function List({ dbData, i }) {
-  const CardDetail = dynamic(() => import("./CardDetail"), {
+  const Title = dynamic(() => import("./Title"), {
     ssr: false,
   });
+
   return (
     <li className="conList" key={i}>
       <div className="conList-top">
-        <Link
-          prefetch={false}
-          href={"/community/detail/" + dbData[i].communityId}
-        >
-          {/* 제목부분 */}
-          <p>{dbData[i].title}</p>
-        </Link>
-        {/* 닉네임, 조회수, 댓글 */}
-        <CardDetail dbData={dbData} i={i} />
+        <Title dbData={dbData} i={i} />
+        <div className="card_detail">
+          <div className="nickname">
+            <img src="/user_icon.png" alt="닉네임" />
+            <span>{dbData.userNickname}</span>
+          </div>
+          <div className="viewsComment">
+            <div className="views">
+              <img src="/view.png" alt="조회수" />
+              <span>{dbData.view}</span>
+            </div>
+            <div className="comment">
+              <img src="/comment.png" alt="댓글" />
+              <span>{dbData.commentCount}</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="conList-tag">
         {dbData[i] &&

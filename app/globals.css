@@ -791,7 +791,7 @@ main {
   box-sizing: border-box;
   border-radius: 20px;
 }
-.detailComments > h4 {
+.detailComments h4 {
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -806,10 +806,64 @@ main {
   padding: 20px 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-.commit > p {
+.commit > .commitTxt {
   padding: 20px 0;
   font-size: 14px;
   color: #373f41;
+}
+.commentInput {
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 8px 20px;
+  border-radius: 50px;
+}
+.commentInput > input {
+  width: 93%;
+  border: none;
+}
+.edit_comment {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+}
+.edit_input {
+  box-sizing: border-box;
+  width: 90%;
+  padding: 8px 20px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+}
+.edit_del {
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  color: #737b7d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.5s;
+}
+.edit_del > div:hover {
+  color: #4730d9;
+  cursor: pointer;
+}
+.edit_del > span {
+  color: #ccc;
+  font-size: 10px;
+}
+.commit_time {
+  color: #aaa;
+  font-size: 12px;
+  margin-left: 12px;
 }
 /* 글작성 폼 */
 .writeForm {

@@ -5,7 +5,6 @@ const TinyMceContainer = (props) => {
     new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.withCredentials = false;
-      xhr.open("POST", "postAcceptor.php");
 
       xhr.upload.onprogress = (e) => {
         progress((e.loaded / e.total) * 100);
@@ -24,10 +23,21 @@ const TinyMceContainer = (props) => {
 
         const json = JSON.parse(xhr.responseText);
 
-        if (!json || typeof json.location != "string") {
+        // if (!json || typeof json.location != "string") {
+        //   reject("Invalid JSON: " + xhr.responseText);
+        //   return;
+        // }
+        if (
+          !json ||
+          !json.data ||
+          !json.data[0] ||
+          typeof json.data[0].uploadFileUrl != "string"
+        ) {
           reject("Invalid JSON: " + xhr.responseText);
           return;
         }
+
+        resolve(json.data[0].uploadFileUrl);
 
         resolve(json.location);
       };
@@ -40,7 +50,20 @@ const TinyMceContainer = (props) => {
       };
 
       const formData = new FormData();
-      formData.append("file", blobInfo.blob(), blobInfo.filename());
+      formData.append("files", blobInfo.blob(), blobInfo.filename());
+      formData.append("uploadTo", "community");
+
+      xhr.open(
+        "POST",
+        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/s3/uploads",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+          body: formData,
+        }
+      );
 
       xhr.send(formData);
     });
@@ -51,7 +74,7 @@ const TinyMceContainer = (props) => {
     <Editor
       apiKey="4sn3xmrbx9qp502lmio9ce9bjobx7f2iop67azbgzic6owc6"
       init={{
-        selector: "textarea#file-picker",
+        selector: "tinyEditor",
         plugins:
           "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
         toolbar:
@@ -63,12 +86,17 @@ const TinyMceContainer = (props) => {
         force_p_newlines: false,
         autoresize_bottom_margin: 0,
         image_title: true,
+        autosave_ask_before_unload: false,
+        powerpaste_allow_local_images: true,
         automatic_uploads: true,
-        file_picker_types: "image",
+        file_picker_types: "file image media",
+        images_upload_url:
+          "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/s3/uploads",
+        images_upload_base_path: "/community",
         images_upload_handler: image_upload_handler,
         file_picker_callback: (cb, value, meta) => {
           const input = document.createElement("input");
-          input.setAttribute("type", "file");
+          input.setAttribute("type", "files");
           input.setAttribute("accept", "image/*");
 
           input.addEventListener("change", (e) => {
@@ -84,13 +112,13 @@ const TinyMceContainer = (props) => {
               const id = "blobid" + new Date().getTime();
               const blobCache = tinymce.activeEditor.editorUpload.blobCache;
               const base64 = reader.result.split(",")[1];
-              const blobInfo = blobCache.create(id, file, base64);
+              const blobInfo = blobCache.create(id, files, base64);
               blobCache.add(blobInfo);
 
               /* call the callback and populate the Title field with the file name */
-              cb(blobInfo.blobUri(), { title: file.name });
+              cb(blobInfo.blobUri(), { title: files.name });
             });
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(files);
           });
 
           input.click();

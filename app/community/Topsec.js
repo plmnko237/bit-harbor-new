@@ -16,6 +16,7 @@ export default function TopSec() {
             name="search"
             autoFocus="true"
             placeholder="검색어를 입력해주세요."
+            autoComplete="off"
           />
           <button type="submit">
             <img src="/search.png" alt="검색" />
