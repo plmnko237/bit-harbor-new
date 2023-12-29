@@ -1,5 +1,9 @@
+"use client";
 import Link from "next/link";
-export default function TopSec() {
+import { useRouter } from "next/navigation";
+export default function TopSec({ session }) {
+  let router = useRouter();
+  console.log("로그인함?", session);
   return (
     <div className="topSec">
       <h2>커뮤니티</h2>
@@ -22,10 +26,20 @@ export default function TopSec() {
             <img src="/search.png" alt="검색" />
           </button>
         </div>
-        <Link href={"/community/write"} className="writeBtn">
+
+        <div
+          className="writeBtn"
+          onClick={() => {
+            if (session.data == null) {
+              alert("로그인해주세요.");
+            } else {
+              router.push("/community/write");
+            }
+          }}
+        >
           <img src="/pen.png" />
           글쓰기
-        </Link>
+        </div>
       </div>
     </div>
   );

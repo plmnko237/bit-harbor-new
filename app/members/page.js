@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
+import Image from "next/image";
+import bgImg from "/public/Standing.png";
 import { useSession } from "next-auth/react";
 
 export default function Account() {
@@ -25,7 +27,7 @@ export default function Account() {
     <div className="loginPage">
       <div className="con">
         <div className="standing">
-          <img src="/Standing.png" alt="로그인배경" />
+          <Image src={bgImg} alt="로그인배너" width={460} height={553} />
         </div>
         <div className="loginForm">
           <div className="btngroup">

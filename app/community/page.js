@@ -4,18 +4,18 @@ import { fetchData } from "@/util/db_community";
 import { useState, useEffect } from "react";
 import PageNumber from "./Pagenation";
 import List from "./List";
+import { useSession } from "next-auth/react";
 
 export default function Community() {
   const [dbData, setDbData] = useState([]);
   const [page, setPage] = useState(1);
   const [size] = useState(10);
   const [postSize, setPostSize] = useState(0);
+  let session = useSession();
 
   useEffect(() => {
     const fetch = async () => {
       const data = await fetchData(page, size);
-      console.log("data:", data);
-      console.log("data postSize:", data[0].postSize);
       setPostSize(data[0].postSize);
       setDbData(data);
     };
@@ -26,12 +26,13 @@ export default function Community() {
 
   // console.log("dbData:", dbData);
   // console.log("postSize2:", postSize);
+  console.log("session:", session);
 
   return (
     <>
       {dbData && dbData ? (
         <main>
-          <TopSec />
+          <TopSec session={session} />
           <div className="container">
             <ul>
               {dbData &&
