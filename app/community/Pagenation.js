@@ -15,7 +15,7 @@ const PageNumber = ({ postSize, currentPage, onPageChange }) => {
         onClick={() => onPageChange(currentPage - 1)}
         //disabled={currentPage === 1}
       >
-        <img src="/navigate_before.png" alt="이전" />
+        <img src="/navigate_before.svg" alt="이전" />
       </button>
       {pages.map((page) => (
         <button
