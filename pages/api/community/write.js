@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       const result = JSON.stringify(req.body);
 
       const apiResponse = await fetch(
-        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community",
+        "https://server.bit-harbor.net/community",
         {
           method: "POST",
           headers: {

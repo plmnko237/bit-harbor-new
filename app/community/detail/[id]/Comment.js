@@ -10,7 +10,7 @@ export default function Comment({ dataItem, session }) {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/${dataItem.communityId}/comments`,
+        `https://server.bit-harbor.net/community/${dataItem.communityId}/comments`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ export default function Comment({ dataItem, session }) {
                   onClick={async (e) => {
                     try {
                       await fetch(
-                        `http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
+                        `https://server.bit-harbor.net/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
                         {
                           method: "DELETE",
                           headers: {
@@ -110,7 +110,7 @@ export default function Comment({ dataItem, session }) {
                     try {
                       // 수정된 댓글을 서버에 업데이트
                       await fetch(
-                        `http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
+                        `https://server.bit-harbor.net/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
                         {
                           method: "PATCH",
                           headers: {
@@ -165,7 +165,7 @@ export default function Comment({ dataItem, session }) {
                 try {
                   // 새로운 댓글 서버에 등록
                   await fetch(
-                    `http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/${dataItem.communityId}/comment`,
+                    `https://server.bit-harbor.net/community/${dataItem.communityId}/comment`,
                     {
                       method: "POST",
                       headers: {

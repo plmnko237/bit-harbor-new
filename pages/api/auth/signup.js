@@ -6,17 +6,14 @@ export default async function handler(req, res) {
       const result = JSON.stringify(req.body);
       console.log(result);
 
-      const apiResponse = await fetch(
-        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/members",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: result,
-        }
-      );
+      const apiResponse = await fetch("https://server.bit-harbor.net/members", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: result,
+      });
       if (!apiResponse.ok) {
         const errorText = await apiResponse.text();
         console.error("API 응답 에러:", errorText);

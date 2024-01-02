@@ -53,17 +53,13 @@ const TinyMceContainer = (props) => {
       formData.append("files", blobInfo.blob(), blobInfo.filename());
       formData.append("uploadTo", "community");
 
-      xhr.open(
-        "POST",
-        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/s3/uploads",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: formData,
-        }
-      );
+      xhr.open("POST", "https://server.bit-harbor.net/s3/uploads", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: formData,
+      });
 
       xhr.send(formData);
     });
@@ -90,8 +86,7 @@ const TinyMceContainer = (props) => {
         powerpaste_allow_local_images: true,
         automatic_uploads: true,
         file_picker_types: "file image media",
-        images_upload_url:
-          "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/s3/uploads",
+        images_upload_url: "https://server.bit-harbor.net/s3/uploads",
         images_upload_base_path: "/community",
         images_upload_handler: image_upload_handler,
         file_picker_callback: (cb, value, meta) => {

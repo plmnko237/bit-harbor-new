@@ -16,7 +16,7 @@ export const authOptions = {
         try {
           // 서버에 인증 요청을 보냄
           const response = await axios.post(
-            "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/members/login",
+            "https://server.bit-harbor.net/members/login",
             {
               email,
               password,

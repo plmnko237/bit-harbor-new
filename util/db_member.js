@@ -2,17 +2,14 @@ let member;
 
 export const membersData = async () => {
   try {
-    const response = await fetch(
-      "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/members",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        cache: "no-store",
-      }
-    );
+    const response = await fetch("https://server.bit-harbor.net/members", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      cache: "no-store",
+    });
 
     if (response.status === 200) {
       const result = await response.json();

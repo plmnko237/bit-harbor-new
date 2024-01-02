@@ -3,7 +3,7 @@ let dbData;
 export const fetchData = async (page = 1, size = 10) => {
   try {
     const response = await fetch(
-      `http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community?page=${page}&size=${size}`,
+      `https://server.bit-harbor.net/community?page=${page}&size=${size}`,
       {
         method: "GET",
         headers: {

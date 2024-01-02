@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const result = await fetch(
-        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/members/login",
+        "https://server.bit-harbor.net/members/login",
         {
           method: "POST",
           headers: {

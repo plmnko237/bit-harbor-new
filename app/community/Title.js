@@ -8,10 +8,7 @@ export default function Title({ dbData, i }) {
       href={"/community/detail/" + dbData.communityId}
       onClick={() => {
         axios
-          .get(
-            "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/" +
-              dbData.communityId
-          )
+          .get("https://server.bit-harbor.net/community/" + dbData.communityId)
           .then((r) => {
             console.log(r.data);
           })

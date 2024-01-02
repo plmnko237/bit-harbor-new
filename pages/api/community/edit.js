@@ -25,8 +25,7 @@ export default async function handler(req, res) {
       console.log("4:" + result);
 
       const apiResponse = await fetch(
-        "http://ec2-13-125-193-97.ap-northeast-2.compute.amazonaws.com:8080/community/" +
-          req.body.communityId,
+        "https://server.bit-harbor.net/community/" + req.body.communityId,
         {
           method: "PATCH",
           headers: {
