@@ -12,20 +12,16 @@ export default async function Detail(props) {
   });
 
   let session = await getServerSession(authOptions);
-
-  //db게시글 불러오는 코드
-  const dbData = await fetchData();
-  //사용자가 입력한 글 주소
   const _id = props.params.id;
+  const size = 10;
+  let page = Math.floor(_id / size) + 1;
+  //db게시글 불러오는 코드
+  const dbData = await fetchData(page, size);
+  //사용자가 입력한 글 주소
+  const dataItem = dbData.find((item) => item.communityId == _id);
+  console.log("dataItem:", dataItem);
 
-  if (_id >= 0 && _id <= dbData) {
-    const dataItem = dbData.find(
-      (item) => item.communityId === parseInt(_id, 10)
-    );
-
-    console.log("dataItem:", dataItem);
-    // console.log("세션:", session);
-
+  if (dataItem && dataItem) {
     return (
       <main>
         <section className="detailCon">

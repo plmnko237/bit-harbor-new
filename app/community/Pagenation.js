@@ -13,7 +13,7 @@ const PageNumber = ({ postSize, currentPage, onPageChange }) => {
     <div className="pager">
       <button
         onClick={() => onPageChange(currentPage - 1)}
-        //disabled={currentPage === 1}
+        //disabled={currentPage === page}
       >
         <img src="/navigate_before.svg" alt="이전" />
       </button>
@@ -26,6 +26,16 @@ const PageNumber = ({ postSize, currentPage, onPageChange }) => {
           {page}
         </button>
       ))}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        //disabled={currentPage === page}
+      >
+        <img
+          src="/navigate_before.svg"
+          alt="이전"
+          style={{ transform: "rotate(180deg)" }}
+        />
+      </button>
     </div>
   );
 };

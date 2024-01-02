@@ -2,7 +2,7 @@
 import axios from "axios";
 import Link from "next/link";
 
-export default function Title({ dbData, i }) {
+export default function Title({ dbData }) {
   return (
     <Link
       href={"/community/detail/" + dbData.communityId}

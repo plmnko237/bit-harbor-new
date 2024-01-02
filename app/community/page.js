@@ -24,10 +24,8 @@ export default function Community() {
   }, [page]);
   const handlePageChange = (pageNum) => setPage(pageNum);
 
-  // console.log("dbData:", dbData);
-  // console.log("postSize2:", postSize);
   console.log("session:", session);
-
+  console.log("data", dbData);
   return (
     <>
       {dbData && dbData ? (

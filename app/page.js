@@ -9,7 +9,10 @@ export default async function Home() {
   const CommunityCard = dynamic(() => import("./CommunityCard"), {
     ssr: false,
   });
-  let dbData = await fetchData();
+
+  let dbData = await fetchData(1, 20);
+  dbData = dbData.slice(0, 5);
+  console.log("몇개니?", dbData);
 
   return (
     <main>
@@ -66,12 +69,9 @@ export default async function Home() {
         </div>
         <div className="cardList">
           {dbData &&
-            dbData.map((a, i) => {
-              if (i <= 3) {
-                return <CommunityCard dbData={dbData} i={i} key={i} />;
-              } else {
-                return null;
-              }
+            dbData.slice(dbData.length - 4).map((a, i) => {
+              console.log(a);
+              return <CommunityCard dbData={dbData} i={i} key={i} />;
             })}
         </div>
       </section>

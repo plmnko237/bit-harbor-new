@@ -1,10 +1,6 @@
-import dynamic from "next/dynamic";
+import Title from "./Title";
 
 export default function List({ dbData, i }) {
-  const Title = dynamic(() => import("./Title"), {
-    ssr: false,
-  });
-
   return (
     <li className="conList" key={i}>
       <div className="conList-top">
