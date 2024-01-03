@@ -8,7 +8,7 @@ export default function KnowledgeCard({ awsData }) {
         <div className="tagGroup"></div>
         <div className="card_detail">
           <div className="nickname">
-            <img src="/user_icon.png" alt="닉네임" />
+            <img src="/user_icon1.png" alt="닉네임" />
             <span>{awsData.data.userNickname}</span>
           </div>
           <div className="viewsComment">

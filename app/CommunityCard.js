@@ -8,7 +8,7 @@ export default function CommunityCard({ dbData, i }) {
         <p dangerouslySetInnerHTML={{ __html: dbData[i].body }}></p>
         <div className="card_detail">
           <div className="nickname">
-            <img src="/user_icon.png" alt="닉네임" />
+            <img src="/user_icon1.png" alt="닉네임" />
             <span>{dbData[i].userNickname}</span>
           </div>
           <div className="viewsComment">

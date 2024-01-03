@@ -12,7 +12,6 @@ export default async function Home() {
 
   let dbData = await fetchData(1, 20);
   dbData = dbData.slice(0, 5);
-  console.log("몇개니?", dbData);
 
   return (
     <main>

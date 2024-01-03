@@ -12,14 +12,17 @@ export default async function Detail(props) {
   });
 
   let session = await getServerSession(authOptions);
+  //사용자가 입력한 글 주소
   const _id = props.params.id;
   const size = 10;
-  let page = Math.floor(_id / size) + 1;
+  let page = Math.floor((_id - 1) / size) + 1;
+
   //db게시글 불러오는 코드
   const dbData = await fetchData(page, size);
-  //사용자가 입력한 글 주소
   const dataItem = dbData.find((item) => item.communityId == _id);
+
   console.log("dataItem:", dataItem);
+  console.log("page:", page);
 
   if (dataItem && dataItem) {
     return (
@@ -32,7 +35,7 @@ export default async function Detail(props) {
               <span>{dataItem.postTime} 작성</span>
               <div className="card_detail">
                 <div className="nickname">
-                  <img src="/user_icon.png" alt="닉네임" />
+                  <img src="/user_icon1.png" alt="닉네임" />
                   <span>{dataItem.userNickname}</span>
                 </div>
                 <div className="viewsComment">

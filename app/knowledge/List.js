@@ -5,7 +5,7 @@ export default function List() {
         <p>10일안에 홈페이지 완성하는 꿀같은 프레임워크 추천</p>
         <div className="card_detail">
           <div className="nickname">
-            <img src="/user_icon.png" alt="닉네임" />
+            <img src="/user_icon1.png" alt="닉네임" />
             <span>닉네임</span>
           </div>
           <div className="viewsComment">

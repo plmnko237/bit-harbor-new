@@ -30,7 +30,7 @@ export default function Textform() {
           style={{ display: "none" }}
         />
       </div>
-      <div className="tagarea">
+      {/* <div className="tagarea">
         <span>태그 : </span>
         <input
           type="text"
@@ -40,7 +40,7 @@ export default function Textform() {
           required
           onChange={handleTagChange}
         />
-      </div>
+      </div> */}
     </>
   );
 }
