@@ -680,6 +680,12 @@ main {
   height: fit-content;
   padding: 10px 0;
 }
+.category {
+  color: #4730d9;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+}
 .conList-body > .listBody {
   font-size: 15px;
   color: #666;

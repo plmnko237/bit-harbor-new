@@ -17,7 +17,9 @@ export default function List({ dbData, i }) {
     <li className="conList" key={i}>
       <div className="conList-top">
         <Title dbData={dbData} i={i} />
+
         <div className="card_detail">
+          <span className="category">{dbData.category}</span>
           <div className="nickname">
             <img src="/user_icon1.png" alt="닉네임" />
             <span>{dbData.userNickname}</span>
