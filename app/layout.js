@@ -6,6 +6,7 @@ import LogoutBtn from "./members/LogoutBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { membersData } from "@/util/db_member";
+import Gnb from "./Gnb";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,19 +28,7 @@ export default async function RootLayout({ children }) {
                 <img src="/logo_color.svg" />
               </Link>
             </h1>
-            <nav id="gnb">
-              <ul>
-                <li>
-                  <Link href={"/qna"}>Q&amp;A</Link>
-                </li>
-                <li>
-                  <Link href={"/knowledge"}>지식</Link>
-                </li>
-                <li>
-                  <Link href={"/community"}>커뮤니티</Link>
-                </li>
-              </ul>
-            </nav>
+            <Gnb />
 
             {session ? (
               <div className="loginActive">

@@ -16,10 +16,9 @@ export const fetchData = async (page = 1, size = 10) => {
 
     if (response.status === 200) {
       const result = await response.json();
-      const reversedData = result.data.reverse(); // 데이터를 역순으로 정렬
-      //console.log("Fetched data:", reversedData); // 데이터를 콘솔에 출력
-      dbData = reversedData; // dbData에 데이터를 할당
-      return reversedData;
+      //console.log("Fetched data:", result.data);
+      dbData = result.data; // dbData에 데이터를 할당
+      return dbData;
     } else {
       console.error("Failed to fetch data. Status:", response.status);
       dbData = null; // 에러 발생 시 dbData를 null로 설정
@@ -31,7 +30,5 @@ export const fetchData = async (page = 1, size = 10) => {
     return null;
   }
 };
-
-//await fetchData();
 
 export default dbData;

@@ -1,5 +1,4 @@
 "use client";
-import { fetchData } from "@/util/db_community";
 import { useState, useEffect } from "react";
 import PageNumber from "./Pagenation";
 import List from "./List";
@@ -11,78 +10,81 @@ export default function Community() {
   const [page, setPage] = useState(1);
   const size = 10;
   const [postSize, setPostSize] = useState(0);
-  const [searchCategory, setSearchCategory] = useState([]);
-  const [allData, setAllData] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("전체");
   const [word, setWord] = useState("");
   const [searchWord, setSearchWord] = useState([]);
-  let session = useSession();
-  let router = useRouter();
+  const session = useSession();
+  const router = useRouter();
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await fetchData(page, size);
-      setPostSize(data[0].postSize);
-      setDbData(data);
-      setAllData(data);
-    };
+  // 데이터 가져오는 함수
+  const fetchData = async (apiUrl) => {
+    try {
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      });
 
-    fetch();
-  }, [page]);
+      if (response.status === 200) {
+        const result = await response.json();
+        const getData = result.data;
+        const pageInfo = result.pageInfo;
+        setPostSize(pageInfo.totalElements);
+        setDbData(getData);
+      } else {
+        console.error("Failed to fetch data. Status:", response.status);
+        setDbData([]);
+        setPostSize(0);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setDbData([]);
+      setPostSize(0);
+    }
+  };
+
+  // 페이지 로딩 시 또는 카테고리 변경 시 데이터 가져오기
   useEffect(() => {
-    if (searchCategory.length > 0) {
-      let newData = [...searchCategory];
+    let apiUrl;
+
+    if (currentCategory === "전체") {
+      apiUrl = `https://server.bit-harbor.net/community?page=${page}&size=${size}`;
+    } else {
+      let category = currentCategory.replace("&", "%26");
+      apiUrl = `https://server.bit-harbor.net/community/category?page=${page}&size=${size}&category=${category}`;
+    }
+
+    fetchData(apiUrl);
+  }, [page, currentCategory]);
+
+  // 카테고리 검색 결과가 있을 때 처리
+  useEffect(() => {
+    if (searchWord.length > 0) {
+      const newData = [...searchWord];
       setPostSize(newData[0]?.postSize || 0);
       setDbData(newData);
     }
-  }, [searchCategory]);
+  }, [searchWord]);
 
+  // 페이지 변경 처리
   const handlePageChange = (pageNum) => setPage(pageNum);
 
-  //카테고리별 게시물
-  const handleCategoryChange = (category) => {
-    category = category.replace("&", "%26");
+  // 카테고리 변경 처리
+  const handleCategoryChange = (category) => setCurrentCategory(category);
 
-    fetch(
-      `https://server.bit-harbor.net/community/category?page=0&size=10&category=${category}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-      }
-    )
-      .then((r) => r.json())
-      .then((result) => {
-        let searchData = result.data;
-        setSearchCategory(searchData);
-      });
-  };
-
-  //검색 게시물
+  // 검색 결과 처리
   const handleSearchChange = (getData) => {
     setSearchWord(getData);
-    let newData = [...searchWord];
-    setPostSize(newData[0]?.postSize || 0);
-    setDbData(newData);
   };
+
+  // 검색 처리
   const handleSearch = () => {
-    fetch(
-      `https://server.bit-harbor.net/community/search?page=0&size=10&keyword=${word}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-      }
-    )
-      .then((r) => r.json())
-      .then((result) => {
-        let searchData = result.data;
-        handleSearchChange(searchData);
-      });
+    const apiUrl = `https://server.bit-harbor.net/community/search?page=0&size=10&keyword=${word}`;
+    fetchData(apiUrl);
   };
+
   return (
     <>
       {dbData ? (
@@ -92,19 +94,21 @@ export default function Community() {
             <p>당신의 지식을 공유하고 새로운 아이디어를 얻어보세요.</p>
             <div className="topSec_detail">
               <div className="secMenu">
-                <span onClick={() => handleCategoryChange("전체")}>전체</span>
-                <span onClick={() => handleCategoryChange("질문&답변")}>
-                  질문&amp;답변
-                </span>
-                <span onClick={() => handleCategoryChange("모임&스터디")}>
-                  모임&amp;스터디
-                </span>
+                {["전체", "질문&답변", "모임&스터디"].map((category, i) => (
+                  <span
+                    key={i}
+                    className={currentCategory === category ? "tabActive" : ""}
+                    onClick={() => handleCategoryChange(category)}
+                  >
+                    {category}
+                  </span>
+                ))}
               </div>
               <div className="searchBar">
                 <input
                   type="text"
                   name="search"
-                  autoFocus="true"
+                  autoFocus={true}
                   placeholder="검색어를 입력해주세요."
                   autoComplete="off"
                   onChange={(e) => setWord(e.target.value)}
@@ -114,7 +118,7 @@ export default function Community() {
                     }
                   }}
                 />
-                <button onClick={() => handleSearch}>
+                <button onClick={handleSearch}>
                   <img src="/search.png" alt="검색" />
                 </button>
               </div>
@@ -136,8 +140,9 @@ export default function Community() {
           </div>
           <div className="container">
             <ul>
-              {dbData &&
-                dbData.map((item, i) => <List dbData={item} key={i} />)}
+              {dbData.map((item, i) => (
+                <List key={i} dbData={item} />
+              ))}
             </ul>
           </div>
           <PageNumber

@@ -55,7 +55,14 @@ img {
   font-size: 30px;
   line-height: 400px;
 }
-
+.active {
+  color: #4730d9;
+  font-weight: 600;
+  border: 1px solid #4730d9 !important;
+}
+.tabActive {
+  color: #4730d9 !important;
+}
 /* header */
 header {
   display: flex;
@@ -94,12 +101,12 @@ h1 {
   font-size: 14px;
   line-height: 18px; /* 128.571% */
   letter-spacing: 0.2px;
-}
-#gnb > ul > li > a {
   color: #333;
   transition: color 0.3s;
+  cursor: pointer;
 }
-#gnb > ul > li > a:hover {
+
+#gnb > ul > li:hover {
   color: #4730d9;
 }
 .loginActive {
@@ -150,6 +157,7 @@ h1 {
 .login:hover span {
   color: #4730d9;
 }
+
 /* main */
 main {
   width: 100%;
@@ -734,6 +742,26 @@ main {
     brightness(88%) contrast(92%);
 }
 /* 상세페이지(Detail) */
+.detail-pager {
+  display: flex;
+  padding-top: 70px;
+  justify-content: space-between;
+  align-self: stretch;
+}
+.detail-pager button {
+  display: flex;
+  border: none;
+  background-color: transparent;
+  height: 28px;
+  cursor: pointer;
+}
+.detail-pager button:hover {
+  color: #4730d9;
+}
+.detail-pager button:hover > img {
+  filter: invert(18%) sepia(95%) saturate(6777%) hue-rotate(252deg)
+    brightness(88%) contrast(92%);
+}
 .detailCon {
   width: 82.5rem;
   min-height: 500px;

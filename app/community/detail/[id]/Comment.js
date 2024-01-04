@@ -1,7 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Comment({ dataItem, session }) {
+  let router = useRouter();
   let [content, setContent] = useState("");
   let [comment, setComment] = useState([]);
   const [editingCommentIndex, setEditingCommentIndex] = useState(null);
@@ -34,8 +36,6 @@ export default function Comment({ dataItem, session }) {
     // 페이지 로드 시 댓글 불러오기
     fetchComments();
   }, [dataItem.communityId, session]);
-
-  console.log("댓글", comment);
 
   return (
     <section className="detailComments">
@@ -188,6 +188,7 @@ export default function Comment({ dataItem, session }) {
               }
             } else {
               alert("로그인이 필요합니다.");
+              router.push("/members");
             }
           }}
         >
