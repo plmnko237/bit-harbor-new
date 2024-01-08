@@ -2,7 +2,7 @@ import { fetchData } from "@/util/db_community";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import dynamic from "next/dynamic";
-import { result } from "lodash";
+import Link from "next/link";
 
 export default async function Detail(props) {
   const EditDelBtn = dynamic(() => import("./EditDelBtn"), {
@@ -11,7 +11,12 @@ export default async function Detail(props) {
   const Comment = dynamic(() => import("./Comment"), {
     ssr: false,
   });
+  let session = await getServerSession(authOptions);
 
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("communityPage");
+  }
+  //전체 게시물 개수 가져오기
   let postSize;
   let getPost = await fetch(
     "https://server.bit-harbor.net/community?page=1&size=1",
@@ -28,19 +33,14 @@ export default async function Detail(props) {
       postSize = result.pageInfo.totalElements;
     });
 
-  console.log("페이지개수", postSize);
-
-  let session = await getServerSession(authOptions);
   //사용자가 입력한 글 주소
   const _id = props.params.id;
 
   //db게시글 불러오는 코드
   const size = 10;
-  let page = Math.floor((_id - 1) / size);
+  let page = Math.ceil((postSize - _id + 1) / size);
   const dbData = await fetchData(page, size);
-
   const dataItem = dbData.find((item) => item.communityId == _id);
-  //console.log("dataItem:", dataItem);
 
   if (dataItem) {
     return (
@@ -76,20 +76,16 @@ export default async function Detail(props) {
           ></p>
           {/* 수정, 삭제버튼 */}
           <EditDelBtn dataItem={dataItem} session={session} />
-          {/* 이전 다음 버튼 */}
-          <div className="detail-pager">
-            <button className="prev">
+          {/* 게시판으로 돌아가는 링크 */}'
+          {/* <div className="detail-pager">
+            <Link
+              className="prev"
+              href={`/community?page=${page}&size=${size}`}
+            >
               <img src="/navigate_before.svg" />
-              이전 페이지
-            </button>
-            <button className="next">
-              다음 페이지
-              <img
-                src="/navigate_before.svg"
-                style={{ transform: "rotate(180deg)" }}
-              />
-            </button>
-          </div>
+              게시판으로 돌아가기
+            </Link>
+          </div> */}
           {/* 댓글영역 */}
           <Comment dataItem={dataItem} session={session} />
         </section>

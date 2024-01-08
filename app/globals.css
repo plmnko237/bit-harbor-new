@@ -748,17 +748,21 @@ main {
   justify-content: space-between;
   align-self: stretch;
 }
-.detail-pager button {
+.detail-pager a {
   display: flex;
+  align-items: center;
   border: none;
   background-color: transparent;
   height: 28px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
 }
-.detail-pager button:hover {
+.detail-pager a:hover {
   color: #4730d9;
 }
-.detail-pager button:hover > img {
+.detail-pager a:hover > img {
+  padding: 0;
   filter: invert(18%) sepia(95%) saturate(6777%) hue-rotate(252deg)
     brightness(88%) contrast(92%);
 }

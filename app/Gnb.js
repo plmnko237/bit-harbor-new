@@ -30,7 +30,7 @@ export default function Gnb() {
           className={tab === "커뮤니티" ? "tabActive" : ""}
           onClick={() => {
             setTab("커뮤니티");
-            router.push("/community");
+            router.push(`/community`);
           }}
         >
           커뮤니티
