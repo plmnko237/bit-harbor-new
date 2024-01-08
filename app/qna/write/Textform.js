@@ -9,13 +9,13 @@ export default function Textform() {
   // debounce 함수를 사용하여 500ms 간격으로만 업데이트 처리
   const debouncedSetBodyText = _debounce(setBodyText, 1000);
 
-  //태그 배열에 추가하기
-  const [tag, setTag] = useState([]);
+  // //태그 배열에 추가하기
+  // const [tag, setTag] = useState([]);
 
-  const handleTagChange = (e) => {
-    const inputText = e.target.value;
-    setTag(inputText.split(",").map((tag) => tag.trim()));
-  };
+  // const handleTagChange = (e) => {
+  //   const inputText = e.target.value;
+  //   setTag(inputText.split(",").map((tag) => tag.trim()));
+  // };
 
   return (
     <>

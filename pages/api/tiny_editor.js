@@ -23,10 +23,6 @@ const TinyMceContainer = (props) => {
 
         const json = JSON.parse(xhr.responseText);
 
-        // if (!json || typeof json.location != "string") {
-        //   reject("Invalid JSON: " + xhr.responseText);
-        //   return;
-        // }
         if (
           !json ||
           !json.data ||
@@ -51,7 +47,7 @@ const TinyMceContainer = (props) => {
 
       const formData = new FormData();
       formData.append("files", blobInfo.blob(), blobInfo.filename());
-      formData.append("uploadTo", "community");
+      formData.append("uploadTo", "qna");
 
       xhr.open("POST", "https://server.bit-harbor.net/s3/uploads", {
         headers: {
@@ -87,7 +83,7 @@ const TinyMceContainer = (props) => {
         automatic_uploads: true,
         file_picker_types: "file image media",
         images_upload_url: "https://server.bit-harbor.net/s3/uploads",
-        images_upload_base_path: "/community",
+        images_upload_base_path: "/qna",
         images_upload_handler: image_upload_handler,
         file_picker_callback: (cb, value, meta) => {
           const input = document.createElement("input");
@@ -119,7 +115,7 @@ const TinyMceContainer = (props) => {
           input.click();
         },
       }}
-      initialValue={dataItem && dataItem.communityId ? dataItem.body : ""}
+      initialValue={dataItem && dataItem.qnaId ? dataItem.body : ""}
       onEditorChange={(content, editor) => {
         console.log("에디터 내용 변경:", content);
         props.setBodyText(content);

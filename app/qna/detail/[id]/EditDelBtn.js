@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 
 export default function EditDelBtn({ dataItem, session }) {
   let router = useRouter();
+  console.log("세션", session.user.memberId);
+  console.log("데이터", dataItem);
   if (dataItem) {
     return (
       <div className="edit_detailTxt">
@@ -16,7 +18,7 @@ export default function EditDelBtn({ dataItem, session }) {
             } else if (session.user.memberId !== dataItem.memberId) {
               alert("본인이 작성한 글만 수정할 수 있습니다.");
             } else if (session.user.memberId == dataItem.memberId) {
-              router.push("../edit/" + dataItem.communityId);
+              router.push("../edit/" + dataItem.qnaId);
             }
           }}
         >

@@ -2,7 +2,6 @@ import { fetchData } from "@/util/db_qna";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 
 export default async function Detail(props) {
   const EditDelBtn = dynamic(() => import("./EditDelBtn"), {
@@ -25,6 +24,7 @@ export default async function Detail(props) {
     .then((r) => r.json())
     .then((result) => {
       postSize = result.pageInfo.totalElements;
+      console.log(result.data);
     });
 
   //사용자가 입력한 글 주소
@@ -34,7 +34,7 @@ export default async function Detail(props) {
   const size = 10;
   let page = Math.ceil((postSize - _id + 1) / size);
   const dbData = await fetchData(page, size);
-  const dataItem = dbData.find((item) => item.communityId == _id);
+  const dataItem = dbData.find((item) => item.qnaId == _id);
 
   if (dataItem) {
     return (

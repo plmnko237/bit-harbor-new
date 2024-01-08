@@ -1,7 +1,5 @@
 "use client";
-
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function BackBtn() {
   let router = useRouter();

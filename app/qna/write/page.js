@@ -15,8 +15,9 @@ export default function Write() {
           />
           <select name="category" className="cartegory">
             <option value={"전체"}>카테고리 선택</option>
-            <option value={"질문&답변"}>질문&답변</option>
-            <option value={"모임&스터디"}>모임&스터디</option>
+            <option value={"기술"}>기술</option>
+            <option value={"커리어"}>커리어</option>
+            <option value={"기타"}>기타</option>
           </select>
         </div>
         <Textform />

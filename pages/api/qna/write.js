@@ -11,9 +11,6 @@ export default async function handler(req, res) {
     }
 
     try {
-      const tags = req.body.tags.split(",").map((tag) => tag.trim());
-      req.body.tags = tags;
-      JSON.stringify(req.body.tags);
       req.body.memberId = session.user.memberId;
 
       // 전체 요청 바디를 JSON 문자열로 변환

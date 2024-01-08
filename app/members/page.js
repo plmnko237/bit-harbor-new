@@ -30,10 +30,10 @@ export default function Account() {
         <div className="loginForm">
           <div className="btngroup">
             <button
-              className="active"
+              className="active1"
               onClick={(e) => {
                 e.target.nextElementSibling.className = "inactive";
-                e.target.className = "active";
+                e.target.className = "active1";
                 setTab(0);
               }}
             >
@@ -43,7 +43,7 @@ export default function Account() {
               className="inactive"
               onClick={(e) => {
                 e.target.previousSibling.className = "inactive";
-                e.target.className = "active";
+                e.target.className = "active1";
                 setTab(1);
               }}
             >

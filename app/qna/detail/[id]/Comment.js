@@ -12,7 +12,7 @@ export default function Comment({ dataItem, session }) {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `https://server.bit-harbor.net/qna/${dataItem.communityId}/comments`,
+        `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comments`,
         {
           method: "GET",
           headers: {
@@ -35,7 +35,7 @@ export default function Comment({ dataItem, session }) {
   useEffect(() => {
     // 페이지 로드 시 댓글 불러오기
     fetchComments();
-  }, [dataItem.communityId, session]);
+  }, [dataItem.qnaId, session]);
 
   return (
     <section className="detailComments">
@@ -69,7 +69,7 @@ export default function Comment({ dataItem, session }) {
                   onClick={async (e) => {
                     try {
                       await fetch(
-                        `https://server.bit-harbor.net/qna/${dataItem.communityId}/comment/${comment[i].commentId}`,
+                        `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comment/${comment[i].commentId}`,
                         {
                           method: "DELETE",
                           headers: {
@@ -110,7 +110,7 @@ export default function Comment({ dataItem, session }) {
                     try {
                       // 수정된 댓글을 서버에 업데이트
                       await fetch(
-                        `https://server.bit-harbor.net/qna/${dataItem.communityId}/comment/${comment[i].commentId}`,
+                        `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comment/${comment[i].commentId}`,
                         {
                           method: "PATCH",
                           headers: {
@@ -165,7 +165,7 @@ export default function Comment({ dataItem, session }) {
                 try {
                   // 새로운 댓글 서버에 등록
                   await fetch(
-                    `https://server.bit-harbor.net/qna/${dataItem.communityId}/comment`,
+                    `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comment`,
                     {
                       method: "POST",
                       headers: {

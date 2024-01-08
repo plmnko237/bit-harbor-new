@@ -30,6 +30,7 @@ export default function Qna() {
       if (response.status === 200) {
         const result = await response.json();
         const getData = result.data;
+        console.log("목록", getData);
         const pageInfo = result.pageInfo;
         setPostSize(pageInfo.totalElements);
         setDbData(getData);
@@ -52,7 +53,7 @@ export default function Qna() {
     if (currentCategory === "전체") {
       apiUrl = `https://server.bit-harbor.net/qna?page=${page}&size=${size}`;
     } else {
-      let category = currentCategory.replace("&", "%26");
+      //let category = currentCategory.replace("&", "%26");
       apiUrl = `https://server.bit-harbor.net/qna/category?page=${page}&size=${size}&category=${category}`;
     }
 
@@ -94,7 +95,7 @@ export default function Qna() {
             <p>당신의 지식을 공유하고 새로운 아이디어를 얻어보세요.</p>
             <div className="topSec_detail">
               <div className="secMenu">
-                {["전체", "질문&답변", "모임&스터디"].map((category, i) => (
+                {["전체", "기술", "커리어", "기타"].map((category, i) => (
                   <span
                     key={i}
                     className={currentCategory === category ? "tabActive" : ""}

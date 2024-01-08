@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
     try {
       const apiResponse = await fetch(
-        "https://server.bit-harbor.net/qna/" + result.communityId + "/comments",
+        "https://server.bit-harbor.net/qna/" + result.qnaId + "/comments",
         {
           method: "GET",
           headers: {

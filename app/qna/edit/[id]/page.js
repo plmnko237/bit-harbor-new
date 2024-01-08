@@ -11,7 +11,7 @@ export default function Write(props) {
 
       // Check if id is a valid index in dbData
       if (_id >= 0 && _id <= dbData) {
-        const dataItem = dbData.find((item) => item.communityId == _id);
+        const dataItem = dbData.find((item) => item.qnaId == _id);
 
         return (
           <main>
@@ -35,8 +35,8 @@ export default function Write(props) {
               </div>
               <Textform dataItem={dataItem} />
               <input
-                name="communityId"
-                value={dataItem.communityId}
+                name="qnaId"
+                value={dataItem.qnaId}
                 style={{ display: "none" }}
               />
               <button className="formBtn">👍 작성완료</button>

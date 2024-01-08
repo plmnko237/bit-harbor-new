@@ -13,9 +13,6 @@ export default async function handler(req, res) {
     }
 
     try {
-      const tags = req.body.tags.split(",").map((tag) => tag.trim());
-      req.body.tags = tags;
-      JSON.stringify(req.body.tags);
       req.body.memberId = session.user.memberId;
 
       // 전체 요청 바디를 JSON 문자열로 변환
@@ -23,7 +20,7 @@ export default async function handler(req, res) {
       console.log("4:" + result);
 
       const apiResponse = await fetch(
-        "https://server.bit-harbor.net/qna/" + req.body.communityId,
+        "https://server.bit-harbor.net/qna/" + req.body.qnaId,
         {
           method: "PATCH",
           headers: {
