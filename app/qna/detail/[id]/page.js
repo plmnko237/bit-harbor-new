@@ -1,4 +1,4 @@
-import { fetchData } from "@/util/db_community";
+import { fetchData } from "@/util/db_qna";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import dynamic from "next/dynamic";
@@ -15,16 +15,13 @@ export default async function Detail(props) {
 
   //전체 게시물 개수 가져오기
   let postSize;
-  let getPost = await fetch(
-    "https://server.bit-harbor.net/community?page=1&size=1",
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-    }
-  )
+  let getPost = await fetch("https://server.bit-harbor.net/qna?page=1&size=1", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    mode: "cors",
+  })
     .then((r) => r.json())
     .then((result) => {
       postSize = result.pageInfo.totalElements;
@@ -77,7 +74,7 @@ export default async function Detail(props) {
           {/* <div className="detail-pager">
             <Link
               className="prev"
-              href={`/community?page=${page}&size=${size}`}
+              href={`/qna?page=${page}&size=${size}`}
             >
               <img src="/navigate_before.svg" />
               게시판으로 돌아가기

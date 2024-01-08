@@ -17,8 +17,6 @@ export default async function handler(req, res) {
       req.body.tags = tags;
       JSON.stringify(req.body.tags);
       req.body.memberId = session.user.memberId;
-      req.body.imgURL =
-        "https://blue-space-982878.postman.co/workspace/My-Workspace~8d06542c-098f-4e52-815d-360a9893894c/folder/25528870-fb049652-edf8-4eb5-aecf-4d4ad7255c53";
 
       // 전체 요청 바디를 JSON 문자열로 변환
       const result = JSON.stringify(req.body);
