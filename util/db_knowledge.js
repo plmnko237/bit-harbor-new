@@ -1,9 +1,9 @@
 let dbData;
 
-export const qnaData = async (page = 1, size = 10) => {
+export const knowledgeData = async (page = 1, size = 10) => {
   try {
     const response = await fetch(
-      `https://server.bit-harbor.net/qna?page=${page}&size=${size}`,
+      `https://server.bit-harbor.net/knowledge?page=${page}&size=${size}`,
       {
         method: "GET",
         headers: {

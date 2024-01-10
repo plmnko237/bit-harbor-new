@@ -240,7 +240,11 @@ main {
   height: fit-content;
   padding: 40px 0;
 }
-
+.topCategory {
+  display: flex;
+  gap: 20px;
+  color: #373f41;
+}
 .secMenu {
   width: 282px;
   display: flex;
@@ -286,7 +290,7 @@ main {
   height: auto;
   justify-content: flex-start;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
   align-content: flex-start;
   flex-wrap: wrap;
 }
@@ -300,25 +304,38 @@ main {
   height: 419px;
   box-sizing: border-box;
   padding: 19px 15px;
-  align-items: flex-end;
+  align-items: flex-start;
+  overflow: hidden;
   gap: 20px;
   border-radius: 10px;
   background-color: #eee;
+  transition: box-shadow 0.3s;
   /* 컨텐츠-drop shadow */
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
-.backImg {
+.topCard .backImg {
   width: fit-content;
+  max-width: 140%;
   height: fit-content;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  margin-left: -50%;
+  filter: brightness(90%);
+  transition: filter 0.3s;
+}
+.topCard:hover {
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.topCard:hover .backImg {
+  filter: brightness(100%);
 }
 .txtBox {
   width: 100%;
   display: flex;
   padding: 20px 20px;
   flex-direction: column;
+  align-self: flex-end;
   align-items: flex-start;
   gap: 8px;
   border-radius: 15px;
@@ -697,6 +714,13 @@ main {
 .conList-body > .listBody {
   font-size: 15px;
   color: #666;
+}
+.tagInfo {
+  margin-left: 20px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #ed3914;
+  font-weight: 500;
 }
 /* .conList-tag {
   display: flex;

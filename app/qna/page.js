@@ -50,11 +50,11 @@ export default function Qna() {
   useEffect(() => {
     let apiUrl;
 
+    console.log("카테고리:", currentCategory);
     if (currentCategory === "전체") {
       apiUrl = `https://server.bit-harbor.net/qna?page=${page}&size=${size}`;
     } else {
-      //let category = currentCategory.replace("&", "%26");
-      apiUrl = `https://server.bit-harbor.net/qna/category?page=${page}&size=${size}&category=${category}`;
+      apiUrl = `https://server.bit-harbor.net/qna/category?page=${page}&size=${size}&category=${currentCategory}`;
     }
 
     fetchData(apiUrl);
@@ -91,7 +91,7 @@ export default function Qna() {
       {dbData ? (
         <main>
           <div className="topSec">
-            <h2>커뮤니티</h2>
+            <h2>Q&A</h2>
             <p>당신의 지식을 공유하고 새로운 아이디어를 얻어보세요.</p>
             <div className="topSec_detail">
               <div className="secMenu">
