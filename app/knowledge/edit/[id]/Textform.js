@@ -65,7 +65,7 @@ export default function Textform({ dataItem }) {
         type="text"
         name="imgURL"
         defaultValue={url}
-        style={{ visibility: "visible" }}
+        style={{ visibility: "hidden" }}
       />
     </>
   );

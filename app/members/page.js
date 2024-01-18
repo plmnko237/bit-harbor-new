@@ -15,7 +15,6 @@ export default function Account() {
       localStorage.setItem("authorization", authorization);
       localStorage.setItem("refresh", refresh);
     }
-    console.log("세션있냐:", session);
   }, [status, session]);
 
   if (status === "loading") {

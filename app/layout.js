@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { membersData } from "@/util/db_member";
 import Gnb from "./Gnb";
+import { NextAuthProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,23 +30,27 @@ export default async function RootLayout({ children }) {
               </Link>
             </h1>
             <Gnb />
-
             {session ? (
-              <div className="loginActive">
-                <span>{session.user.name}님</span>
-                <LogoutBtn />
-              </div>
+              <NextAuthProvider session={session.user}>
+                <div className="loginActive">
+                  <span>{session.user.name}님</span>
+                  <Link href={"/mypage"}>MYPAGE</Link>
+                  <LogoutBtn />
+                </div>
+              </NextAuthProvider>
             ) : (
-              <Link href={"/members"}>
-                <button className="login">
-                  <img src="/person.svg" alt="login" />
-                  <span>로그인</span>
-                </button>
-              </Link>
+              <NextAuthProvider>
+                <Link href={"/members"}>
+                  <button className="login">
+                    <img src="/person.svg" alt="login" />
+                    <span>로그인</span>
+                  </button>
+                </Link>
+              </NextAuthProvider>
             )}
           </div>
         </header>
-        {children}
+        <NextAuthProvider>{children}</NextAuthProvider>
         <footer>
           <div className="con">
             <h2>

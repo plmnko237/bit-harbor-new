@@ -7,8 +7,6 @@ function Login() {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log("이메일:", email);
-    console.log("비번:", password);
 
     const result = await signIn("credentials", {
       email,

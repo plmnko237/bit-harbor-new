@@ -25,14 +25,14 @@ export const authOptions = {
           const authorization = response.headers.get("authorization");
           const refresh = response.headers.get("refresh");
 
-          console.log("authorization : ", authorization);
-          console.log("refresh : ", refresh);
+          // console.log("authorization : ", authorization);
+          // console.log("refresh : ", refresh);
 
           let db = await membersData();
           let findUser = db.find(
             (member) => member.email === credentials.email
           );
-          console.log("findUser : ", findUser);
+          //console.log("findUser : ", findUser);
           if (!findUser) {
             console.log("해당 이메일은 없음");
             return null;
@@ -42,11 +42,13 @@ export const authOptions = {
             const user = {
               id: findUser.memberId,
               name: findUser.userName,
+              userNickname: findUser.userNickname,
               email: findUser.email,
               memberId: findUser.memberId,
               authorization: authorization,
               refresh: refresh,
             };
+            //console.log("찾은회원", user);
             return user;
           } else {
             return null;
@@ -63,18 +65,29 @@ export const authOptions = {
     maxAge: 30 * 24 * 60 * 60, //30일
   },
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, trigger, user, session }) => {
       if (user) {
-        token.user = {
-          name: user.name,
-          email: user.email,
-          memberId: user.memberId,
-          authorization: user.authorization,
-          refresh: user.refresh,
-        };
+        token.user = {};
+        token.user.name = user.name;
+        token.user.userNickname = user.userNickname;
+        token.user.email = user.email;
+        token.user.memberId = user.memberId;
+        token.user.authorization = user.authorization;
+        token.user.refresh = user.refresh;
+      }
+
+      if (trigger === "update" && session.name) {
+        // 클라이언트에서 보낸 변경된 회원 정보를 세션에 반영
+        token.user.userNickname = session.userNickname;
+        token.user.userName = session.userName;
+
+        console.log("회원", token);
+        console.log("trigger", trigger);
+        console.log("session", session);
       }
       return token;
     },
+
     session: async ({ session, token }) => {
       session.user = token.user;
       return session;
