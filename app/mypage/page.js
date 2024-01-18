@@ -53,15 +53,12 @@ export default function MyPage() {
   const handleMemberInfo = async () => {
     try {
       const response = await axios.post("api/auth/memberUpdate", formValues);
-
       if (response.status === 200) {
         if (status === "authenticated") {
-          console.log("update 함수 호출 시작");
           await update({
             userNickname: formValues.userNickname,
             userName: formValues.userName,
           });
-          console.log("update 함수 호출 완료");
         }
       }
     } catch (error) {
@@ -177,10 +174,12 @@ export default function MyPage() {
               />
             </div>
           </div>
+          {/* form 안에서 button type을 명시하지 않으면 페이지 이동 form 안에서 ajax 비동기 요청하였으나 form과 동시에 동작해서 문제 발생한것으로 보임 */}
           <button
             className="writeBtn"
             style={{ width: "80px", marginLeft: "0px", margin: "0 auto" }}
             onClick={handleMemberInfo}
+            type="button"
           >
             변경하기
           </button>
