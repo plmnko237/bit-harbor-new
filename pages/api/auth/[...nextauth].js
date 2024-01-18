@@ -12,6 +12,7 @@ export const authOptions = {
       },
       authorize: async (credentials, req) => {
         const { email, password } = credentials;
+        console.log("🚀 ~ authorize: ~ credentials:", credentials);
 
         try {
           // 서버에 인증 요청을 보냄
@@ -48,7 +49,7 @@ export const authOptions = {
               authorization: authorization,
               refresh: refresh,
             };
-            //console.log("찾은회원", user);
+            console.log("찾은회원", user);
             return user;
           } else {
             return null;
@@ -75,8 +76,9 @@ export const authOptions = {
         token.user.authorization = user.authorization;
         token.user.refresh = user.refresh;
       }
-
-      if (trigger === "update" && session.name) {
+      // 조건문 에러 session 값은 userNickname, userName 프로퍼티만 존재함 name 프로퍼티 없음
+      // if (trigger === "update" && session.name) {
+      if (trigger === "update") {
         // 클라이언트에서 보낸 변경된 회원 정보를 세션에 반영
         token.user.userNickname = session.userNickname;
         token.user.userName = session.userName;
