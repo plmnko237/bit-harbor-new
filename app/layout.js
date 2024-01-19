@@ -33,9 +33,9 @@ export default async function RootLayout({ children }) {
             {session ? (
               <NextAuthProvider session={session.user}>
                 <div className="loginActive">
-                  <span>{session.user.name}님</span>
+                  <span>{session.user.userNickname}님</span>
                   <Link href={"/mypage"}>MYPAGE</Link>
-                  <LogoutBtn />
+                  <LogoutBtn session={session} />
                 </div>
               </NextAuthProvider>
             ) : (

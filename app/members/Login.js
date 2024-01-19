@@ -13,9 +13,9 @@ function Login() {
       password,
     });
 
-    if (result.error) {
-      console.error(result.error);
-    }
+    // if (result.error) {
+    //   console.error(result.error);
+    // }
   };
 
   return (

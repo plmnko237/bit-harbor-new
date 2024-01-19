@@ -53,16 +53,14 @@ export default function MyPage() {
   const handleMemberInfo = async () => {
     try {
       const response = await axios.post("api/auth/memberUpdate", formValues);
-
       if (response.status === 200) {
         if (status === "authenticated") {
-          console.log("update 함수 호출 시작");
           await update({
             userNickname: formValues.userNickname,
             userName: formValues.userName,
           });
-          console.log("update 함수 호출 완료");
         }
+        location.reload();
       }
     } catch (error) {
       console.error("회원수정 실패:", error.message);
@@ -84,14 +82,13 @@ export default function MyPage() {
         </div>
         {/* 회원 정보 바꾸기 */}
         <form className="rightCon">
-          <pre>{JSON.stringify(session, null, 2)}</pre>
           <div className="userUpdate">
             <h4>이름 변경</h4>
             <div className="userChangeInfo">
               <input
                 type="text"
                 name="userName"
-                placeholder={findMember.userName}
+                placeholder={session.user.userName}
                 onChange={handleInputChange}
               />
             </div>
@@ -102,7 +99,7 @@ export default function MyPage() {
               <input
                 type="text"
                 name="userNickname"
-                placeholder={findMember.userNickname}
+                placeholder={session.user.userNickname}
                 onChange={(e) => {
                   setFormValues((prevFormValues) => ({
                     ...prevFormValues,
@@ -177,10 +174,12 @@ export default function MyPage() {
               />
             </div>
           </div>
+          {/* form 안에서 button type을 명시하지 않으면 페이지 이동 form 안에서 ajax 비동기 요청하였으나 form과 동시에 동작해서 문제 발생한것으로 보임 */}
           <button
             className="writeBtn"
             style={{ width: "80px", marginLeft: "0px", margin: "0 auto" }}
             onClick={handleMemberInfo}
+            type="button"
           >
             변경하기
           </button>

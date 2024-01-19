@@ -14,6 +14,7 @@ export default function Account() {
       let refresh = session.user.refresh;
       localStorage.setItem("authorization", authorization);
       localStorage.setItem("refresh", refresh);
+      console.log("로그인", session);
     }
   }, [status, session]);
 
