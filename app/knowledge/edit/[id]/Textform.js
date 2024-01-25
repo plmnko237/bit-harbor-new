@@ -8,7 +8,7 @@ export default function Textform({ dataItem }) {
   const [bodyText, setBodyText] = useState("");
   // debounce 함수를 사용하여 500ms 간격으로만 업데이트 처리
   const debouncedSetBodyText = _debounce(setBodyText, 1000);
-  let [url, setUrl] = useState(dataItem.imgURL || "");
+  let [url, setUrl] = useState(dataItem.imgURL);
 
   const handleFileChange = async (e) => {
     let file = e.target.files[0];
@@ -64,7 +64,7 @@ export default function Textform({ dataItem }) {
       <input
         type="text"
         name="imgURL"
-        defaultValue={url}
+        value={url}
         style={{ visibility: "hidden" }}
       />
     </>

@@ -9,11 +9,10 @@ export default function LogoutBtn() {
     <button
       className="login"
       onClick={() => {
-        signOut();
+        signOut({ callbackUrl: "/members" });
         console.log("로그아웃", session.user);
         sessionStorage.clear();
         localStorage.clear();
-        router.push("/members");
       }}
     >
       <span>로그아웃</span>

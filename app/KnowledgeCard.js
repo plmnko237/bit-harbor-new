@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function KnowledgeCard({ knowledge, i }) {
-  console.log("지식", knowledge);
+  const [imgdata, setImgdata] = useState([]);
+
   const hideImages = (html) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
@@ -15,6 +17,7 @@ export default function KnowledgeCard({ knowledge, i }) {
 
     return doc.body.innerHTML;
   };
+
   return (
     <Link href={"/knowledge/detail/" + knowledge[i].knowledgeId}>
       <div className="topCard">

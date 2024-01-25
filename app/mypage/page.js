@@ -49,16 +49,22 @@ export default function MyPage() {
       [name]: value,
     }));
   };
+  const authorize = localStorage.getItem("authorization");
+  const refresh = localStorage.getItem("refresh");
+  console.log("인증1", authorize);
+  console.log("인증2", refresh);
 
   const handleMemberInfo = async () => {
     try {
       const response = await axios.post("api/auth/memberUpdate", formValues);
       if (response.status === 200) {
         if (status === "authenticated") {
-          await update({
+          const { user } = await update({
             userNickname: formValues.userNickname,
             userName: formValues.userName,
           });
+          localStorage.setItem("authorization", user.authorization);
+          localStorage.setItem("refresh", user.refresh);
         }
         location.reload();
       }
@@ -88,7 +94,7 @@ export default function MyPage() {
               <input
                 type="text"
                 name="userName"
-                placeholder={session.user.userName}
+                placeholder={session.user.name}
                 onChange={handleInputChange}
               />
             </div>

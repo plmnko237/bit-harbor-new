@@ -3,8 +3,12 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res) {
   let session = await getServerSession(req, res, authOptions);
+  console.log(session);
   if (req.method === "POST") {
     let memberId = req.body.memberId;
+
+    console.log("바뀐거", req.body);
+
     let member = {
       password: req.body.password,
       checkPassword: req.body.checkPassword,
@@ -47,9 +51,9 @@ export default async function handler(req, res) {
         return res.status(500).json("서버 오류");
       }
       // 세션 업데이트
-      session.user.userName = member.userName;
-      session.user.userNickname = member.userNickname;
-      console.log("바뀐거", session.user.userNickname);
+      // session.user.userName = member.userName;
+      // session.user.userNickname = member.userNickname;
+      // console.log("바뀐거", session.user.userNickname);
 
       res.status(200).json({ responseData, session });
     } catch (error) {

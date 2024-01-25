@@ -1,7 +1,19 @@
-import { signIn } from "next-auth/react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 function Login() {
+  const [providers, setProviders] = useState(null);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      console.log(res);
+      setProviders(res);
+    })();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -12,10 +24,13 @@ function Login() {
       email,
       password,
     });
+  };
 
-    // if (result.error) {
-    //   console.error(result.error);
-    // }
+  const handleKakao = async () => {
+    const result = await signIn("kakao", {
+      redirect: true,
+      callbackUrl: "/members",
+    });
   };
 
   return (
@@ -48,18 +63,22 @@ function Login() {
         <div className="socialLog">
           <h4>소셜 로그인</h4>
           <div className="social-icons">
-            <Link href={"/"}>
-              <img src="/kakao.png" alt="카카오톡" />
-            </Link>
-            <Link href={"/"}>
+            <button
+              type="button"
+              onClick={() =>
+                signIn("naver", { redirect: true, callbackUrl: "/members" })
+              }
+            >
               <img src="/naver.png" alt="네이버" />
-            </Link>
-            <Link href={"/"}>
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                signIn("google", { redirect: true, callbackUrl: "/members" })
+              }
+            >
               <img src="/google.png" alt="구글" />
-            </Link>
-            <Link href={"/"}>
-              <img src="/facebook.png" alt="페이스북" />
-            </Link>
+            </button>
           </div>
         </div>
       </form>

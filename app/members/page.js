@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 export default function Account() {
   let [tab, setTab] = useState(0);
   const { data: session, status } = useSession();
+  console.log("members/page 로그인한사람~:", session);
 
   useEffect(() => {
     if (status === "authenticated" && session) {

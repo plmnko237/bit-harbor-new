@@ -8,6 +8,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { membersData } from "@/util/db_member";
 import Gnb from "./Gnb";
 import { NextAuthProvider } from "./providers";
+import MobileGnb from "./Mobile_Gnb";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,14 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
+  if (session) {
+    console.log("최상단레이아웃회원정보", session.user);
+  }
 
   return (
     <html lang="en">
       <body className={inter.className}>
+        <MobileGnb session={session} />
         <header>
           <div className="con">
             <h1>
@@ -33,8 +38,17 @@ export default async function RootLayout({ children }) {
             {session ? (
               <NextAuthProvider session={session.user}>
                 <div className="loginActive">
-                  <span>{session.user.userNickname}님</span>
-                  <Link href={"/mypage"}>MYPAGE</Link>
+                  <span>
+                    {session.user.userNickname
+                      ? session.user.userNickname
+                      : session.user.name}
+                    님
+                  </span>
+                  {session.user.name ? (
+                    ""
+                  ) : (
+                    <Link href={"/mypage"}>MYPAGE</Link>
+                  )}
                   <LogoutBtn session={session} />
                 </div>
               </NextAuthProvider>
@@ -50,6 +64,7 @@ export default async function RootLayout({ children }) {
             )}
           </div>
         </header>
+
         <NextAuthProvider>{children}</NextAuthProvider>
         <footer>
           <div className="con">
