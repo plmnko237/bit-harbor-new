@@ -101,7 +101,7 @@ export default function MobileGnb({ session }) {
             </ul>
           </nav>
         ) : (
-          ""
+          <nav id="mobileGnb"></nav>
         )}
       </div>
     </div>

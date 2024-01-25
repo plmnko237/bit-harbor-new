@@ -51,8 +51,8 @@ export default function MyPage() {
   };
   const authorize = localStorage.getItem("authorization");
   const refresh = localStorage.getItem("refresh");
-  console.log("인증1", authorize);
-  console.log("인증2", refresh);
+  // console.log("인증1", authorize);
+  // console.log("인증2", refresh);
 
   const handleMemberInfo = async () => {
     try {

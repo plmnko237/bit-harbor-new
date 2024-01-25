@@ -1,7 +1,6 @@
 "use client";
-
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Signup() {
   const [formValues, setFormValues] = useState({
@@ -12,6 +11,7 @@ export default function Signup() {
     userNickname: "",
     phoneNumber: "",
   });
+  let [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,17 +45,24 @@ export default function Signup() {
     // 조건이 모두 통과되면 API 호출 또는 다른 작업 수행
     axios
       .post("/api/auth/signup", formValues)
-      .then((res) => console.log(res))
+      .then((res) => console.log("중복응답", res))
       .catch((error) => {
         if (error.response) {
           // 서버가 응답한 상태 코드가 400인 경우
           console.error("Error Response Data:", error.response.data);
+          setErrorMessage(error.response.data);
         } else {
           // 서버 응답을 받지 못한 경우 (네트워크 문제 등)
           console.error("Error Message:", error.message);
         }
       });
   };
+  useEffect(() => {
+    if (errorMessage) {
+      console.log(errorMessage);
+      alert(errorMessage);
+    }
+  }, [errorMessage]);
 
   const emailCheck = (email) => {
     const emailRegEx =

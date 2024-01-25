@@ -197,25 +197,19 @@ h1 {
   display: none;
 }
 .openMenu {
-  width: 100%;
+  display: none;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #4630d9a1;
   position: absolute;
   right: 0;
   z-index: 8888;
-  display: flex;
-  justify-content: space-between;
-  transition: right 0.5s;
 }
 .closeMenu {
-  width: 100%;
+  display: none;
   height: 100vh;
   position: absolute;
-  right: -85.6%;
+  right: 0;
   z-index: 8888;
-  display: flex;
-  justify-content: space-between;
-  transition: right 0.5s;
 }
 .mobileMenuBtn {
   font-size: 30px;
@@ -234,6 +228,7 @@ h1 {
   border-left: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
+
 #mobileGnb ul {
   display: flex;
   flex-direction: column;
@@ -402,6 +397,9 @@ main {
   align-items: center;
   align-content: flex-start;
   flex-wrap: wrap;
+}
+.cardList > a {
+  display: block;
 }
 /* 지식 카드 컴포넌트 */
 .topCard {
@@ -1311,16 +1309,32 @@ footer p {
   .loginActive span {
     font-size: 16px;
   }
-
   .mobileMenu {
     display: block;
+  }
+  .closeMenu {
+    display: flex;
+    width: 3.5rem;
+    transition: width 0.5s;
+    overflow: hidden;
+    justify-content: space-between;
+  }
+  .closeMenu #mobileGnb {
+    display: none;
+  }
+  .openMenu {
+    width: 100%;
+    transition: width 0.5s;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
   }
   main {
     padding: 0;
   }
   .main-visual {
-    height: 68vh;
-    background: url(/m_visual.png) no-repeat center 43vh;
+    height: 600px;
+    background: url(/m_visual.png) no-repeat center 325px;
     background-size: 100%;
     display: flex;
     justify-content: center;
@@ -1329,7 +1343,8 @@ footer p {
   }
   .maintxt {
     width: 80vw;
-    height: fit-content;
+    justify-content: flex-start;
+    height: 100%;
     padding: 0;
   }
   .maintxt p {
@@ -1355,16 +1370,19 @@ footer p {
   }
   .cardList {
     justify-content: center;
-    width: fit-content;
     margin-bottom: 80px;
-    background-color: skyblue;
+  }
+  .cardList a {
+    width: 100%;
+    display: contents;
   }
   .cardList > a:last-child {
     justify-self: baseline;
   }
   .topCard {
-    width: 288px;
-    height: 300px;
+    width: 100%;
+    max-width: 100%;
+    height: 165px;
   }
   .topCard .backImg {
     width: 100%;
@@ -1373,6 +1391,14 @@ footer p {
   }
   .tableCard {
     width: 100%;
+  }
+  footer {
+    padding: 1.5rem;
+    height: fit-content;
+  }
+  footer > .con {
+    flex-direction: column;
+    row-gap: 18px;
   }
 }
 /* 태블릿 */

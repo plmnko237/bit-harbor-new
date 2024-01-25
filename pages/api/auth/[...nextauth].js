@@ -33,8 +33,8 @@ export const authOptions = {
           const authorization = response.headers.get("authorization");
           const refresh = response.headers.get("refresh");
 
-          console.log("authorization : ", authorization);
-          console.log("refresh : ", refresh);
+          // console.log("authorization : ", authorization);
+          // console.log("refresh : ", refresh);
 
           let db = await membersData();
           let findUser = db.find(
@@ -121,10 +121,11 @@ export const authOptions = {
         token.user.userNickname = user.userNickname;
         token.user.email = user.email;
         token.user.memberId = user.memberId;
+        token.user.profileNum = user.profileNum;
         token.user.authorization = user.authorization;
         token.user.refresh = user.refresh;
       }
-      console.log("JWT Callback:", token, trigger, user, session);
+      // console.log("JWT Callback:", token, trigger, user, session);
 
       // 조건문 에러 session 값은 userNickname, userName 프로퍼티만 존재함 name 프로퍼티 없음
       // if (trigger === "update" && session.name) {
