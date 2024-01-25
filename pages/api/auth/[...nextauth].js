@@ -53,6 +53,7 @@ export const authOptions = {
               userNickname: findUser.userNickname,
               email: findUser.email,
               memberId: findUser.memberId,
+              profileNum: findUser.profileNum,
               authorization: authorization,
               refresh: refresh,
             };
@@ -83,37 +84,37 @@ export const authOptions = {
   },
   callbacks: {
     jwt: async ({ token, trigger, user, session }) => {
-      //서버로 정보 전송
-      if (token) {
-        try {
-          const response = await fetch(
-            "https://server.bit-harbor.net/members/oauth",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              mode: "cors",
-              body: JSON.stringify(token),
-            }
-          );
+      // //서버로 정보 전송
+      // if (token) {
+      //   try {
+      //     const response = await fetch(
+      //       "https://server.bit-harbor.net/members/oauth",
+      //       {
+      //         method: "POST",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //         mode: "cors",
+      //         body: JSON.stringify(token),
+      //       }
+      //     );
 
-          const socialAuthorization = response.headers.get("Authorization");
-          const socialRefresh = response.headers.get("Refresh-Token");
-          console.log("socialAuthorization : ", socialAuthorization);
-          console.log("socialRefresh : ", socialRefresh);
+      //     const socialAuthorization = response.headers.get("Authorization");
+      //     const socialRefresh = response.headers.get("Refresh-Token");
+      //     console.log("socialAuthorization : ", socialAuthorization);
+      //     console.log("socialRefresh : ", socialRefresh);
 
-          let db = await membersData();
-          let findUser = db.find((member) => member.email === token.email);
+      //     let db = await membersData();
+      //     let findUser = db.find((member) => member.email === token.email);
 
-          if (!findUser) {
-            console.log("해당 이메일은 없음");
-            return null;
-          }
-        } catch (error) {
-          console.error("fetch 오류:", error);
-        }
-      }
+      //     if (!findUser) {
+      //       console.log("해당 이메일은 없음");
+      //       return null;
+      //     }
+      //   } catch (error) {
+      //     console.error("fetch 오류:", error);
+      //   }
+      // }
       if (user) {
         token.user = {};
         token.user.name = user.name;
