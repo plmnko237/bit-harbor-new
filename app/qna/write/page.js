@@ -6,13 +6,15 @@ export default function Write() {
       <form action="../api/qna/write" method="POST" className="writeForm">
         <h4>✍ 글작성</h4>
         <div className="postTitle">
-          <span>제목 : </span>
-          <input
-            type="text"
-            name="title"
-            placeholder="제목을 입력해주세요."
-            required
-          />
+          <div className="titleArea">
+            <span>제목 : </span>
+            <input
+              type="text"
+              name="title"
+              placeholder="여기에 제목을 입력해주세요."
+              required
+            />
+          </div>
           <select name="category" className="cartegory">
             <option value={"전체"}>카테고리 선택</option>
             <option value={"기술"}>기술</option>

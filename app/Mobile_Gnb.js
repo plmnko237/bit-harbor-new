@@ -46,17 +46,8 @@ export default function MobileGnb({ session }) {
                 {session ? (
                   <NextAuthProvider session={session.user}>
                     <div className="loginActive">
-                      <span>
-                        {session.user.userNickname
-                          ? session.user.userNickname
-                          : session.user.name}
-                        님
-                      </span>
-                      {session.user.name ? (
-                        ""
-                      ) : (
-                        <Link href={"/mypage"}>MYPAGE</Link>
-                      )}
+                      <span>{session.user.userNickname}님</span>
+                      <Link href={"/mypage"}>MYPAGE</Link>
                       <LogoutBtn session={session} />
                     </div>
                   </NextAuthProvider>

@@ -157,6 +157,7 @@ h1 {
 .loginActive > a:hover {
   color: #4730d9;
 }
+
 .login {
   display: flex;
   height: 32px;
@@ -198,15 +199,14 @@ h1 {
 }
 .openMenu {
   display: none;
-  height: 100vh;
   background-color: #4630d9a1;
   position: absolute;
   right: 0;
   z-index: 8888;
+  border-radius: 0 0 0 20px;
 }
 .closeMenu {
   display: none;
-  height: 100vh;
   position: absolute;
   right: 0;
   z-index: 8888;
@@ -222,7 +222,6 @@ h1 {
 }
 #mobileGnb {
   width: 88%;
-  height: 100vh;
   background-color: #fff;
   box-sizing: border-box;
   border-left: 1px solid #eee;
@@ -404,7 +403,7 @@ main {
 /* 지식 카드 컴포넌트 */
 .topCard {
   cursor: pointer;
-  width: 303px;
+  width: 298px;
   max-width: 303px;
   position: relative;
   display: flex;
@@ -641,6 +640,8 @@ main {
   cursor: pointer;
 }
 .socialLog {
+  /* 추후 개발 가능할때까지 숨겨두기 */
+  display: none;
   width: 100%;
   height: fit-content;
   border-top: 1px solid #ddd;
@@ -912,6 +913,8 @@ main {
 }
 .crumbs {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
   height: fit-content;
   justify-content: space-between;
   align-items: center;
@@ -1078,11 +1081,21 @@ main {
   box-sizing: border-box;
   padding: 0 20px 20px 20px;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  row-gap: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-.postTitle > input {
+.titleArea {
+  width: 85%;
+  height: fit-content;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.postTitle input {
   width: 80.3%;
   font-size: 1rem;
   color: #373f41;
@@ -1299,10 +1312,10 @@ footer p {
   #gnb {
     display: none;
   }
-  .login {
+  .con .login {
     display: none;
   }
-  .loginActive {
+  .con .loginActive {
     display: none;
   }
   .loginActive a,
@@ -1315,18 +1328,22 @@ footer p {
   .closeMenu {
     display: flex;
     width: 3.5rem;
+    height: 70vh;
     transition: width 0.5s;
     overflow: hidden;
     justify-content: space-between;
+    align-items: stretch;
   }
   .closeMenu #mobileGnb {
     display: none;
   }
   .openMenu {
     width: 100%;
+    height: 70vh;
     transition: width 0.5s;
     overflow: hidden;
     display: flex;
+    align-items: stretch;
     justify-content: space-between;
   }
   main {
@@ -1391,6 +1408,99 @@ footer p {
   }
   .tableCard {
     width: 100%;
+  }
+  /* 게시판 */
+  .topSec {
+    padding: 40px 1rem;
+  }
+  .topSec > p {
+    width: 90%;
+    margin: 20px auto;
+  }
+  .searchBar {
+    min-width: 100%;
+    max-width: 700px;
+  }
+  .writeBtn {
+    margin-left: 0;
+    margin: 0 auto;
+  }
+  .container > ul {
+    padding: 0 1rem;
+  }
+  /* 상세페이지 */
+  .detailCon {
+    width: 100%;
+  }
+  .edit_detailTxt {
+    padding: 0 20px;
+  }
+  .commentInput > input {
+    width: 64%;
+    max-width: 87%;
+  }
+  /* 글작성 */
+  .writeForm {
+    width: 100%;
+  }
+  .writeForm > h4 {
+    padding-left: 0;
+  }
+  .postTitle {
+    width: 100%;
+    padding: 0;
+  }
+  .postTitle input {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+  }
+  .titleArea {
+    width: 100%;
+  }
+  .titleArea > span {
+    display: none;
+  }
+  .cartegory {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  /* 로그인 */
+  .loginPage {
+    padding: 0 1rem;
+  }
+  .standing {
+    display: none;
+  }
+  .loginForm {
+    width: 100%;
+  }
+  /* 마이페이지 */
+  .myPageCon {
+    width: 100%;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 40px 1rem;
+  }
+  .leftCon {
+    width: 100%;
+    gap: 20px;
+  }
+  .rightCon {
+    width: 100%;
+  }
+  .profileImg > img {
+    width: 85.5%;
+  }
+  .profileIcons {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: -1 1rem;
+  }
+  .withdraw > button {
+    float: none;
+    margin: 0 auto;
   }
   footer {
     padding: 1.5rem;

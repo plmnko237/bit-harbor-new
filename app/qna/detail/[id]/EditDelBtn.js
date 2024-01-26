@@ -3,8 +3,6 @@ import { useRouter } from "next/navigation";
 
 export default function EditDelBtn({ dataItem, session }) {
   let router = useRouter();
-  console.log("세션", session.user.memberId);
-  console.log("데이터", dataItem);
   if (dataItem) {
     return (
       <div className="edit_detailTxt">

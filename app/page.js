@@ -17,13 +17,13 @@ export default async function Home() {
   });
 
   let dbData = await fetchData(1, 10);
-  dbData = dbData.slice(0, 5);
+  dbData = dbData ? dbData.slice(0, 5) : null;
 
   let qna = await qnaData(1, 10);
-  qna = qna.slice(0, 5);
+  qna = qna ? qna.slice(0, 5) : null;
 
   let knowledge = await knowledgeData(1, 10);
-  knowledge = knowledge.slice(0, 5);
+  knowledge = knowledge ? knowledge.slice(0, 5) : null;
 
   return (
     <main>
