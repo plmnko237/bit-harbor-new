@@ -388,18 +388,16 @@ main {
 }
 /* 지식 카드 컨테이너 */
 .cardList {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
   height: auto;
-  justify-content: flex-start;
   gap: 20px;
-  align-items: center;
-  align-content: flex-start;
-  flex-wrap: wrap;
 }
 .cardList > a {
   display: block;
 }
+
 /* 지식 카드 컴포넌트 */
 .topCard {
   cursor: pointer;
@@ -1226,6 +1224,7 @@ footer p {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
 .profileImg > img {
+  width: 86%;
   margin: 9px auto;
 }
 .rightCon {
@@ -1294,6 +1293,230 @@ footer p {
 .withdraw > button {
   float: right;
 }
+/* PC */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  header {
+    padding: 0rem 3rem;
+  }
+  #gnb {
+    width: 28vw;
+  }
+  .loginActive a,
+  .loginActive span {
+    font-size: 13px;
+  }
+  .main-visual {
+    padding: 0 3rem;
+    background: url(/main-visual.svg) no-repeat right;
+  }
+  main {
+    padding: 0;
+  }
+  .maintxt p {
+    color: #000;
+  }
+  .secCon {
+    padding: 40px 3rem;
+  }
+  .cardList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .topCard {
+    width: 100%;
+    max-width: 100%;
+  }
+  .topCard .backImg {
+    width: 107%;
+  }
+  .tableCard {
+    width: auto;
+  }
+  /* 게시판 */
+  .topSec_detail {
+    padding: 0 3rem;
+  }
+  .writeBtn {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  .container {
+    padding: 0 3rem;
+  }
+  /* 상세페이지 */
+  .detailCon {
+    width: 100%;
+  }
+  .detail_title {
+    padding: 32px 3rem;
+  }
+  .detailTxt {
+    padding: 40px 3rem;
+  }
+  .commentInput > input {
+    width: 87%;
+  }
+  .edit_detailTxt {
+    padding: 0 3rem;
+  }
+  /* 글작성 */
+  .writeForm {
+    width: 100%;
+  }
+  .postTitle {
+    justify-content: space-between;
+  }
+  .postTitle input {
+    width: 89%;
+  }
+  .titleArea {
+    width: 67vw;
+  }
+  /* 마이페이지 */
+  .myPageCon {
+    width: 100%;
+    padding: 40px 3rem;
+    gap: 20px;
+  }
+  .leftCon {
+    width: 27.8%;
+  }
+  .profileIcons {
+    flex-wrap: wrap;
+
+    gap: 16px;
+  }
+  /* 로그인 */
+  .loginPage {
+    padding: 0 3rem;
+  }
+  .standing {
+    width: 30%;
+  }
+  .standing > img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .loginForm {
+    width: 45%;
+    max-width: 50%;
+  }
+}
+/* 태블릿 */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  header {
+    padding: 0rem 2rem;
+  }
+  #gnb {
+    width: 28vw;
+  }
+  .loginActive a,
+  .loginActive span {
+    font-size: 12px;
+  }
+  .main-visual {
+    padding: 0 2rem;
+    background: url(/main-visual.svg) no-repeat 280px;
+  }
+  main {
+    padding: 0;
+  }
+  .maintxt p {
+    color: #000;
+  }
+  .secCon {
+    padding: 40px 2rem;
+  }
+  .cardList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cardList > a {
+    width: 100%;
+  }
+  .topCard {
+    width: 100%;
+    max-width: 100%;
+  }
+  .topCard .backImg {
+    width: 100%;
+  }
+  .tableCard {
+    width: auto;
+  }
+  /* 게시판 */
+  .topSec_detail {
+    padding: 0 2rem;
+  }
+  .writeBtn {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  .container {
+    padding: 0 2rem;
+  }
+  .detail_title {
+    padding: 32px 2rem;
+  }
+  .detailTxt {
+    padding: 40px 2rem;
+  }
+  .edit_detailTxt {
+    padding: 0 2rem;
+  }
+  .detailComments {
+    padding: 32px 2rem;
+  }
+  /* 상세페이지 */
+  .detailCon {
+    width: 100%;
+  }
+  .commentInput > input {
+    width: 87%;
+  }
+  /* 글작성 */
+  .writeForm {
+    width: 100%;
+  }
+  .postTitle {
+    justify-content: space-between;
+  }
+  .postTitle input {
+    width: 89%;
+  }
+  .titleArea {
+    width: 60vw;
+  }
+  /* 마이페이지 */
+  .myPageCon {
+    width: 100%;
+    padding: 40px 2rem;
+    flex-direction: column;
+  }
+  .leftCon {
+    width: 100%;
+    margin-bottom: 20px;
+    gap: 16px;
+  }
+  .rightCon {
+    width: 100%;
+  }
+  /* 로그인 */
+  .loginPage {
+    padding: 0 2rem;
+  }
+  .standing {
+    display: none;
+  }
+  .loginForm {
+    width: 65%;
+  }
+  footer {
+    padding: 0rem 2rem;
+  }
+}
+
 /* 모바일 */
 @media screen and (min-width: 320px) and (max-width: 767px) {
   body {
@@ -1386,6 +1609,7 @@ footer p {
     margin-bottom: 0;
   }
   .cardList {
+    grid-template-columns: repeat(1, 1fr);
     justify-content: center;
     margin-bottom: 80px;
   }
@@ -1395,6 +1619,7 @@ footer p {
   }
   .cardList > a:last-child {
     justify-self: baseline;
+    display: block;
   }
   .topCard {
     width: 100%;
@@ -1490,7 +1715,7 @@ footer p {
     width: 100%;
   }
   .profileImg > img {
-    width: 85.5%;
+    width: 85.7%;
   }
   .profileIcons {
     flex-wrap: wrap;
@@ -1510,10 +1735,4 @@ footer p {
     flex-direction: column;
     row-gap: 18px;
   }
-}
-/* 태블릿 */
-@media screen and (min-width: 768px) {
-}
-/* PC */
-@media screen and (min-width: 1024px) {
 }
