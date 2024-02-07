@@ -9,7 +9,6 @@ function Login() {
   useEffect(() => {
     (async () => {
       const res = await getProviders();
-      console.log(res);
       setProviders(res);
     })();
   }, []);
@@ -58,7 +57,7 @@ function Login() {
           로그인
         </button>
         <div className="check-account">
-          <Link href={"/"}>아이디/비밀번호 찾기</Link>
+          <Link href={"/members/findAccount"}>이메일/비밀번호 찾기</Link>
         </div>
         <div className="socialLog">
           <h4>소셜 로그인</h4>
