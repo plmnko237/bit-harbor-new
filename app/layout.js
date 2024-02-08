@@ -73,17 +73,18 @@ export default async function RootLayout({ children }) {
             <div className="sns-icons">
               <ul>
                 <li>
+                  <Link href={"/developers"} title="만든 사람들">
+                    <img src="/developers_button.svg" alt="developers" />
+                  </Link>
+                </li>
+                <li>
                   <Link
                     href={
                       "https://www.notion.so/side-project-04b609ff07564e41a5cdbb3f54523c8f?pvs=4"
                     }
+                    title="notion으로 바로가기"
                   >
                     <img src="/notion_button.svg" alt="notion" />
-                  </Link>
-                </li>
-                <li>
-                  <Link href={""}>
-                    <img src="/git_button.svg" alt="notion" />
                   </Link>
                 </li>
                 <li>
@@ -91,6 +92,7 @@ export default async function RootLayout({ children }) {
                     href={
                       "https://www.figma.com/file/lZTKPzCMlPT8kMHdwgs4B7/main_page?type=design&node-id=44%3A33733&mode=design&t=MvuVAV1e1zPyfoh5-1"
                     }
+                    title="figma작업 보러가기"
                   >
                     <img src="/figma_button.svg" alt="notion" />
                   </Link>

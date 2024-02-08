@@ -39,12 +39,22 @@ export default async function Home() {
             <br />
             개발에 대한 정보라면 어떤 것이든 환영합니다.
           </p>
+
           <button className="mainBtn">
             <span className="mainBtnIcon">🙌</span>
             <Link href={"/members"}>
               <span>BitHarbor와 함께하기</span>
             </Link>
           </button>
+          <Link href={"/developers"}>
+            <button
+              type="button"
+              className="writeBtn"
+              style={{ marginLeft: "0" }}
+            >
+              개발자 소개 👨‍💻
+            </button>
+          </Link>
         </div>
       </section>
       <section className="secCon" style={{ paddingTop: "80px" }}>
