@@ -396,6 +396,7 @@ main {
 }
 .cardList > a {
   display: block;
+  width: 100%;
 }
 .cardList > a:last-child > .topCard {
   display: none;
@@ -1468,8 +1469,11 @@ footer p {
     padding: 40px 3rem;
   }
   .cardList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(31%, auto));
+  }
+  .cardList > a {
+    display: block;
+    width: 100%;
   }
   .cardList > a:last-child > .topCard {
     display: flex;
@@ -1592,8 +1596,7 @@ footer p {
     padding: 40px 2rem;
   }
   .cardList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(48%, auto));
   }
   .cardList > a:last-child > .topCard {
     display: flex;
@@ -1786,7 +1789,7 @@ footer p {
     margin-bottom: 0;
   }
   .cardList {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
     justify-content: center;
     margin-bottom: 80px;
   }

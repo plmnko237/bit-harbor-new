@@ -94,7 +94,7 @@ export default function MyPage() {
               <input
                 type="text"
                 name="userName"
-                placeholder={session.user.name}
+                placeholder={session.user.userName}
                 onChange={handleInputChange}
               />
             </div>
