@@ -70,7 +70,7 @@ export default async function Home() {
         </div>
         <div className="cardList">
           {knowledge &&
-            knowledge.slice(qna.length - 4).map((a, i) => {
+            knowledge.slice(qna.length - 6).map((a, i) => {
               return <KnowledgeCard knowledge={knowledge} i={i} key={i} />;
             })}
         </div>

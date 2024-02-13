@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         return res.status(apiResponse.status).json(errorText);
       }
 
-      res.redirect(302, "/members");
+      res.status(200).json("회원가입이 완료되었습니다.");
     } catch (error) {
       console.error("서버 오류:", error);
       return res.status(500).json("서버 오류");

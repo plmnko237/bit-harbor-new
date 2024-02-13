@@ -7,7 +7,35 @@ import { useSession } from "next-auth/react";
 export default function Account() {
   let [tab, setTab] = useState(0);
   const { data: session, status } = useSession();
-  //console.log("members/page 로그인한사람~:", session);
+  let [myMember, setMyMember] = useState([]);
+
+  useEffect(() => {
+    // 회원정보가져오기
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://server.bit-harbor.net/members", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+        });
+
+        if (response.status === 200) {
+          const result = await response.json();
+          const getData = result.data;
+          setMyMember(getData);
+        } else {
+          console.error("Failed to fetch data. Status:", response.status);
+          setMyMember([]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setMyMember([]);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (status === "authenticated" && session) {
@@ -50,7 +78,11 @@ export default function Account() {
               회원가입
             </button>
           </div>
-          {tab === 0 ? <Login /> : tab === 1 ? <Signup /> : null}
+          {tab === 0 ? (
+            <Login />
+          ) : tab === 1 ? (
+            <Signup myMember={myMember} />
+          ) : null}
         </div>
       </div>
     </div>

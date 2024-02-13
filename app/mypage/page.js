@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -173,7 +173,7 @@ export default function MyPage() {
                 onChange={handleInputChange}
               />
               <input
-                type="checkPassword"
+                type="password"
                 name="checkPassword"
                 placeholder="비밀번호 확인"
                 onChange={handleInputChange}
@@ -201,8 +201,15 @@ export default function MyPage() {
                   `https://server.bit-harbor.net/members/${findMember.memberId}`,
                   {
                     method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: session.user.authorization,
+                    },
+                    mode: "cors",
                   }
                 );
+                alert("회원탈퇴가 완료되었습니다.");
+                signOut({ callbackUrl: "/" });
               } else {
                 return;
               }

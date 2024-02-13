@@ -1,17 +1,18 @@
-import { getProviders, signIn, useSession } from "next-auth/react";
+import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import LogoutBtn from "./LogoutBtn";
 
 function Login() {
   const [providers, setProviders] = useState(null);
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    (async () => {
-      const res = await getProviders();
-      setProviders(res);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const res = await getProviders();
+  //     setProviders(res);
+  //   })();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,41 +26,61 @@ function Login() {
     });
   };
 
-  const handleKakao = async () => {
-    const result = await signIn("kakao", {
-      redirect: true,
-      callbackUrl: "/members",
-    });
-  };
-
-  return (
-    <>
+  // const handleKakao = async () => {
+  //   const result = await signIn("kakao", {
+  //     redirect: true,
+  //     callbackUrl: "/members",
+  //   });
+  // };
+  if (session) {
+    return (
       <form onSubmit={handleSubmit} className="loginBox">
-        <h3 className="formTit">Login</h3>
-        <div className="inputBox">
-          <input
-            type="email"
-            name="email"
-            autoFocus={true}
-            autoComplete="email"
-            placeholder="이메일 입력"
-          />
+        <h3 className="formTit">내 정보</h3>
+        <div className="myInfo">
+          <li>
+            <span>{session.user.userNickname}</span>님 환영합니다.
+          </li>
+          <div className="myImg">
+            <img src="/m_visual.png" alt="로그인중" />
+          </div>
+          <li style={{ fontSize: "14px" }}>
+            현재 로그인중인 이메일: {session.user.email}
+          </li>
+          <li className="sessionLogOut">
+            <LogoutBtn />{" "}
+          </li>
         </div>
-        <div className="inputBox">
-          <input
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            placeholder="비밀번호 입력"
-          />
-        </div>
-        <button type="submit" id="submitBtn">
-          로그인
-        </button>
-        <div className="check-account">
-          <Link href={"/members/findAccount"}>이메일/비밀번호 찾기</Link>
-        </div>
-        <div className="socialLog">
+      </form>
+    );
+  } else {
+    return (
+      <>
+        <form onSubmit={handleSubmit} className="loginBox">
+          <h3 className="formTit">Login</h3>
+          <div className="inputBox">
+            <input
+              type="email"
+              name="email"
+              autoFocus={true}
+              autoComplete="email"
+              placeholder="이메일 입력"
+            />
+          </div>
+          <div className="inputBox">
+            <input
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              placeholder="비밀번호 입력"
+            />
+          </div>
+          <button type="submit" id="submitBtn">
+            로그인
+          </button>
+          <div className="check-account">
+            <Link href={"/members/findAccount"}>이메일/비밀번호 찾기</Link>
+          </div>
+          {/* <div className="socialLog">
           <h4>소셜 로그인</h4>
           <div className="social-icons">
             <button
@@ -79,10 +100,11 @@ function Login() {
               <img src="/google.png" alt="구글" />
             </button>
           </div>
-        </div>
-      </form>
-    </>
-  );
+        </div> */}
+        </form>
+      </>
+    );
+  }
 }
 
 export default Login;

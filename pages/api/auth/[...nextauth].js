@@ -13,10 +13,9 @@ export const authOptions = {
         password: { label: "password", type: "password" },
       },
       authorize: async (credentials, req) => {
-        console.log("로그인시작");
         const { email, password } = credentials;
         const bodyData = JSON.stringify({ email, password });
-        console.log("🚀 ~ authorize: ~ credentials:", credentials);
+        // console.log("🚀 ~ authorize: ~ credentials:", credentials);
 
         try {
           // 서버에 인증 요청을 보냄
@@ -30,23 +29,21 @@ export const authOptions = {
               },
             }
           );
-          const authorization = response.headers.get("authorization");
-          const refresh = response.headers.get("refresh");
 
-          // console.log("authorization : ", authorization);
-          // console.log("refresh : ", refresh);
+          if (response.ok) {
+            const authorization = response.headers.get("authorization");
+            const refresh = response.headers.get("refresh");
 
-          let db = await membersData();
-          let findUser = db.find(
-            (member) => member.email === credentials.email
-          );
+            let db = await membersData();
+            let findUser = db.find(
+              (member) => member.email === credentials.email
+            );
 
-          if (!findUser) {
-            console.log("해당 이메일은 없음");
-            return null;
-          }
+            if (!findUser) {
+              console.log("해당 이메일은 없음");
+              return null;
+            }
 
-          if (findUser) {
             const user = {
               id: findUser.memberId,
               name: findUser.userName,
@@ -57,10 +54,10 @@ export const authOptions = {
               authorization: authorization,
               refresh: refresh,
             };
-            console.log("찾은회원", user);
 
             return user;
           } else {
+            console.log("로그인 실패 - 비밀번호가 일치하지 않음");
             return null;
           }
         } catch (error) {
@@ -69,14 +66,14 @@ export const authOptions = {
         }
       },
     }),
-    NaverProvider({
-      clientId: process.env.NAVER_CLIENT_ID,
-      clientSecret: process.env.NAVER_CLIENT_SECRET,
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    // NaverProvider({
+    //   clientId: process.env.NAVER_CLIENT_ID,
+    //   clientSecret: process.env.NAVER_CLIENT_SECRET,
+    // }),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // }),
   ],
   session: {
     strategy: "jwt",

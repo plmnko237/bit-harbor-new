@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         }
       );
 
-      console.log("Headers:", result.headers);
+      console.log("결과확인", result);
 
       if (!result.ok) {
         const errorText = await result.text();

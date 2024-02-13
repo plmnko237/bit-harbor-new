@@ -1308,6 +1308,42 @@ footer p {
 .withdraw > button {
   float: right;
 }
+.myInfo {
+  width: 100%;
+  height: fit-content;
+}
+.myImg {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #dbf6ff;
+}
+.myImg > img {
+  width: 100%;
+}
+.myInfo li {
+  color: #373f41;
+  text-align: center;
+  margin: 35px 0;
+}
+.myInfo li span {
+  color: #4730d9;
+  font-weight: 700;
+}
+.myInfo li.sessionLogOut {
+  width: 30%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50px;
+  text-align: center;
+  border: 1px solid #4730d9;
+}
+.myInfo li.sessionLogOut > button {
+  width: 100%;
+  height: 38px;
+}
 /* 아이디/비번찾기 */
 .findAccountCon {
   width: 100%;
@@ -1844,6 +1880,15 @@ footer p {
   .loginForm {
     width: 80%;
     min-width: 91%;
+  }
+  .myImg {
+    height: 170px;
+  }
+  .myInfo li.sessionLogOut {
+    width: 60%;
+  }
+  .myInfo li.sessionLogOut > button {
+    display: block;
   }
   /* 마이페이지 */
   .myPageCon {

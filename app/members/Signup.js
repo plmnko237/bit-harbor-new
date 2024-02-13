@@ -1,8 +1,11 @@
 "use client";
+import { membersData } from "@/util/db_member";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Signup() {
+export default function Signup({ myMember }) {
+  const router = useRouter();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -11,7 +14,7 @@ export default function Signup() {
     userNickname: "",
     phoneNumber: "",
   });
-  let [errorMessage, setErrorMessage] = useState("");
+  console.log("회원목록", myMember);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +26,21 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //닉네임 중복확인
+    for (let i = 0; i < myMember.length; i++) {
+      if (myMember[i].userNickname === formValues.userNickname) {
+        alert("닉네임 중복. 다른 닉네임을 사용해주세요.");
+        return;
+      }
+    }
+    //전화번호 중복확인
+    for (let i = 0; i < myMember.length; i++) {
+      if (myMember[i].phoneNumber === formValues.phoneNumber) {
+        alert("이미 사용중인 번호입니다. 다시 한 번 확인해주세요.");
+        return;
+      }
+    }
 
     // 여기서 조건을 검사하고 조건에 맞지 않으면 alert
     if (!emailCheck(formValues.email)) {
@@ -40,12 +58,15 @@ export default function Signup() {
       return;
     }
 
-    // 나머지 필드에 대한 조건 검사 추가
-
     // 조건이 모두 통과되면 API 호출 또는 다른 작업 수행
     axios
       .post("/api/auth/signup", formValues)
-      .then((res) => console.log("중복응답", res))
+      .then((res) => {
+        if (res.status === 200) {
+          alert("회원가입이 완료되었습니다. 로그인 해주세요.");
+          router.push("/members");
+        }
+      })
       .catch((error) => {
         if (error.response) {
           // 서버가 응답한 상태 코드가 400인 경우
@@ -57,12 +78,6 @@ export default function Signup() {
         }
       });
   };
-  useEffect(() => {
-    if (errorMessage) {
-      console.log(errorMessage);
-      alert(errorMessage);
-    }
-  }, [errorMessage]);
 
   const emailCheck = (email) => {
     const emailRegEx =
