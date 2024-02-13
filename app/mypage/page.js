@@ -51,8 +51,6 @@ export default function MyPage() {
   };
   const authorize = localStorage.getItem("authorization");
   const refresh = localStorage.getItem("refresh");
-  // console.log("인증1", authorize);
-  // console.log("인증2", refresh);
 
   const handleMemberInfo = async () => {
     try {
@@ -67,12 +65,14 @@ export default function MyPage() {
           localStorage.setItem("refresh", user.refresh);
         }
         location.reload();
+        alert("회원정보 수정 완료");
       }
     } catch (error) {
       console.error("회원수정 실패:", error.message);
+      alert("회원정보 수정 실패");
     }
   };
-  console.log("세션", session);
+
   if (findMember) {
     return (
       <section className="myPageCon">

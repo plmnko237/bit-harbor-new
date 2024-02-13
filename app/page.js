@@ -2,7 +2,6 @@ import { fetchData } from "@/util/db_community";
 import { qnaData } from "@/util/db_qna";
 import { knowledgeData } from "@/util/db_knowledge";
 import Link from "next/link";
-import { membersData } from "@/util/db_member";
 import dynamic from "next/dynamic";
 
 export default async function Home() {
@@ -16,12 +15,13 @@ export default async function Home() {
     ssr: false,
   });
 
+  //커뮤니티
   let dbData = await fetchData(1, 10);
-  dbData = dbData ? dbData.slice(0, 6) : null;
-
+  dbData = dbData ? dbData.slice(0, 4) : null;
+  //Qna
   let qna = await qnaData(1, 10);
-  qna = qna ? qna.slice(0, 6) : null;
-
+  qna = qna ? qna.slice(0, 4) : null;
+  //지식
   let knowledge = await knowledgeData(1, 10);
   knowledge = knowledge ? knowledge.slice(0, 6) : null;
 
@@ -39,7 +39,6 @@ export default async function Home() {
             <br />
             개발에 대한 정보라면 어떤 것이든 환영합니다.
           </p>
-
           <button className="mainBtn">
             <span className="mainBtnIcon">🙌</span>
             <Link href={"/members"}>
@@ -70,7 +69,7 @@ export default async function Home() {
         </div>
         <div className="cardList">
           {knowledge &&
-            knowledge.slice(qna.length - 6).map((a, i) => {
+            knowledge.map((a, i) => {
               return <KnowledgeCard knowledge={knowledge} i={i} key={i} />;
             })}
         </div>
@@ -86,8 +85,9 @@ export default async function Home() {
           </div>
         </div>
         <div className="cardList">
+          {/* qna.slice(qna.length - 6) */}
           {qna &&
-            qna.slice(qna.length - 4).map((a, i) => {
+            qna.map((a, i) => {
               return <QnaCard qna={qna} i={i} key={i} />;
             })}
         </div>
@@ -102,7 +102,7 @@ export default async function Home() {
         </div>
         <div className="cardList">
           {dbData &&
-            dbData.slice(dbData.length - 4).map((a, i) => {
+            dbData.map((a, i) => {
               return <CommunityCard dbData={dbData} i={i} key={i} />;
             })}
         </div>

@@ -260,7 +260,6 @@ h1 {
 .loginActive span {
   font-size: 13px;
 }
-
 /* main */
 main {
   width: 100%;
@@ -1474,6 +1473,9 @@ footer p {
   .cardList > a {
     display: block;
     width: 100%;
+  }
+  .cardList > a:last-child > .tableCard {
+    display: none;
   }
   .cardList > a:last-child > .topCard {
     display: flex;

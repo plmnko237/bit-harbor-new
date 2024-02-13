@@ -2,7 +2,6 @@ import { knowledgeData } from "@/util/db_knowledge";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 
 export default async function Detail(props) {
   const EditDelBtn = dynamic(() => import("./EditDelBtn"), {
@@ -35,7 +34,7 @@ export default async function Detail(props) {
 
   //db게시글 불러오는 코드
   const size = 10;
-  let page = Math.ceil((postSize - _id + 1) / size);
+  let page = Math.abs(Math.ceil((postSize - _id + 1) / size));
   const dbData = await knowledgeData(page, size);
   const dataItem = dbData.find((item) => item.knowledgeId == _id);
 
