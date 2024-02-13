@@ -8,8 +8,8 @@ import LogoutBtn from "./members/LogoutBtn";
 export default function MobileGnb({ session }) {
   let [tab, setTab] = useState("");
   let [menuButton, setMenuButton] = useState(false);
-
   let router = useRouter();
+
   return (
     <div className="mobileMenu">
       <div className={menuButton ? "openMenu" : "closeMenu"}>
@@ -62,33 +62,27 @@ export default function MobileGnb({ session }) {
                   </NextAuthProvider>
                 )}
               </li>
-              <li
-                className={tab === "Q&A" ? "tabActive" : ""}
-                onClick={() => {
-                  setTab("Q&A");
-                  router.push("/qna");
-                }}
-              >
-                Q&A
-              </li>
-              <li
-                className={tab === "지식" ? "tabActive" : ""}
-                onClick={() => {
-                  setTab("지식");
-                  router.push("/knowledge");
-                }}
-              >
-                지식
-              </li>
-              <li
-                className={tab === "커뮤니티" ? "tabActive" : ""}
-                onClick={() => {
-                  setTab("커뮤니티");
-                  router.push(`/community`);
-                }}
-              >
-                커뮤니티
-              </li>
+              {["Q&A", "지식", "커뮤니티"].map((menu, i) => {
+                return (
+                  <li
+                    className={tab === menu ? "tabActive" : ""}
+                    onClick={() => {
+                      setTab(menu);
+                      if (menu === "Q&A") {
+                        router.push("/qna");
+                      } else if (menu === "지식") {
+                        router.push("/knowledge");
+                      } else if (menu === "커뮤니티") {
+                        router.push("/community");
+                      }
+
+                      setMenuButton(false);
+                    }}
+                  >
+                    {menu}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         ) : (

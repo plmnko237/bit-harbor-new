@@ -799,6 +799,7 @@ main {
   align-content: center;
   align-self: stretch;
   flex-wrap: wrap;
+  row-gap: 12px;
 }
 .conList-top > .card_detail {
   width: fit-content;
@@ -809,11 +810,11 @@ main {
   font-style: normal;
   font-weight: 600;
   color: #373f41;
-  line-height: 140%; /* 22.4px */
+  line-height: 1.6;
   text-transform: capitalize;
 }
 .conList-body {
-  width: 90%;
+  width: 100%;
   height: fit-content;
   padding: 10px 0;
 }
@@ -824,8 +825,18 @@ main {
   font-weight: 600;
 }
 .conList-body > .listBody {
+  width: 100%;
+  height: 22px;
+  overflow: hidden;
   font-size: 15px;
   color: #666;
+}
+.listBody > p {
+  width: 100%;
+  height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .tagInfo {
   margin-left: 20px;
