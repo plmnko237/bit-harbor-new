@@ -12,7 +12,7 @@ export const authOptions = {
         email: { label: "email", type: "email" },
         password: { label: "password", type: "password" },
       },
-      authorize: async (credentials, req) => {
+      authorize: async (credentials, req, res) => {
         const { email, password } = credentials;
         const bodyData = JSON.stringify({ email, password });
         // console.log("🚀 ~ authorize: ~ credentials:", credentials);
@@ -57,8 +57,9 @@ export const authOptions = {
 
             return user;
           } else {
-            console.log("로그인 실패 - 비밀번호가 일치하지 않음");
-            return null;
+            return res
+              .status(401)
+              .json({ error: "로그인 실패 - 비밀번호가 일치하지 않음" });
           }
         } catch (error) {
           console.error("nextauth로그인 오류:", error);
@@ -81,37 +82,6 @@ export const authOptions = {
   },
   callbacks: {
     jwt: async ({ token, trigger, user, session }) => {
-      // //서버로 정보 전송
-      // if (token) {
-      //   try {
-      //     const response = await fetch(
-      //       "https://server.bit-harbor.net/members/oauth",
-      //       {
-      //         method: "POST",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //         },
-      //         mode: "cors",
-      //         body: JSON.stringify(token),
-      //       }
-      //     );
-
-      //     const socialAuthorization = response.headers.get("Authorization");
-      //     const socialRefresh = response.headers.get("Refresh-Token");
-      //     console.log("socialAuthorization : ", socialAuthorization);
-      //     console.log("socialRefresh : ", socialRefresh);
-
-      //     let db = await membersData();
-      //     let findUser = db.find((member) => member.email === token.email);
-
-      //     if (!findUser) {
-      //       console.log("해당 이메일은 없음");
-      //       return null;
-      //     }
-      //   } catch (error) {
-      //     console.error("fetch 오류:", error);
-      //   }
-      // }
       if (user) {
         token.user = {};
         token.user.name = user.name;
@@ -122,7 +92,6 @@ export const authOptions = {
         token.user.authorization = user.authorization;
         token.user.refresh = user.refresh;
       }
-      // console.log("JWT Callback:", token, trigger, user, session);
 
       // 조건문 에러 session 값은 userNickname, userName 프로퍼티만 존재함 name 프로퍼티 없음
       // if (trigger === "update" && session.name) {

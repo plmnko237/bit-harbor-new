@@ -1,18 +1,13 @@
-import { getProviders, signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LogoutBtn from "./LogoutBtn";
+import { useRouter } from "next/navigation";
 
 function Login() {
-  const [providers, setProviders] = useState(null);
   const { data: session, status } = useSession();
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await getProviders();
-  //     setProviders(res);
-  //   })();
-  // }, []);
+  let [userLogin, setUserLogin] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +18,16 @@ function Login() {
     const result = await signIn("credentials", {
       email,
       password,
+      redirect: false,
     });
+
+    console.log("응답", result.status);
+    if (result.status === 401) {
+      alert("이메일 혹은 비밀번호가 일치하지 않습니다.");
+      location.reload();
+    } else if (result.status === 200) {
+      location.reload();
+    }
   };
 
   // const handleKakao = async () => {
