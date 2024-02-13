@@ -1,5 +1,4 @@
 "use client";
-import { membersData } from "@/util/db_member";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -58,20 +57,32 @@ export default function Signup({ myMember }) {
     }
 
     // 조건이 모두 통과되면 API 호출 또는 다른 작업 수행
-    axios
-      .post("/api/auth/signup", formValues)
-      .then((res) => {
-        console.log("응답결과", res);
-        if (res.status === 200) {
+    fetch("/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify(formValues),
+    })
+      .then((response) => {
+        console.log("응답결과", response);
+        if (response.status === 200) {
           alert("회원가입이 완료되었습니다. 로그인 해주세요.");
           location.reload();
         }
+        if (response.status === 409) {
+          alert("이메일 중복! 다른 이메일을 사용해주세요.");
+        }
       })
       .catch((error) => {
+        console.error("오류 발생:", error);
         if (error.response) {
           // 서버가 응답한 상태 코드가 400인 경우
-          console.error("Error Response Data:", error.response.data);
-          setErrorMessage(error.response.data);
+          error.response.json().then((data) => {
+            console.error("Error Response Data:", data);
+            setErrorMessage(data);
+          });
         } else {
           // 서버 응답을 받지 못한 경우 (네트워크 문제 등)
           console.error("Error Message:", error.message);

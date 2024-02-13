@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     try {
       req.body.profileNum = 1;
       const result = JSON.stringify(req.body);
-      console.log(result);
+      console.log("보낼거", result);
 
       const apiResponse = await fetch("https://server.bit-harbor.net/members", {
         method: "POST",
@@ -26,7 +26,5 @@ export default async function handler(req, res) {
       console.error("서버 오류:", error);
       return res.status(500).json("서버 오류");
     }
-
-    res.redirect(302, "/members");
   }
 }
