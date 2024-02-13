@@ -14,7 +14,6 @@ export default function Signup({ myMember }) {
     userNickname: "",
     phoneNumber: "",
   });
-  console.log("회원목록", myMember);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,9 +61,10 @@ export default function Signup({ myMember }) {
     axios
       .post("/api/auth/signup", formValues)
       .then((res) => {
+        console.log("응답결과", res);
         if (res.status === 200) {
           alert("회원가입이 완료되었습니다. 로그인 해주세요.");
-          router.push("/members");
+          location.reload();
         }
       })
       .catch((error) => {
