@@ -525,7 +525,8 @@ main {
 }
 .tableCard h2 {
   width: 100%;
-  height: 40px;
+  height: auto;
+  max-height: 40px;
   flex-shrink: 0;
   color: #333;
   font-size: 16px;
@@ -533,6 +534,11 @@ main {
   font-weight: 600;
   line-height: 140%; /* 22.4px */
   text-transform: capitalize;
+}
+.tableCard .card_contents {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
 }
 .tableCard p {
   width: 100%;

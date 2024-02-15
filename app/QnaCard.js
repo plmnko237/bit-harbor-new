@@ -18,7 +18,9 @@ export default function QnaCard({ qna, i }) {
     <Link href={"/qna/detail/" + qna[i].qnaId}>
       <div className="tableCard">
         <h2>{qna[i].title}</h2>
-        <p dangerouslySetInnerHTML={{ __html: hideImages(qna[i].body) }}></p>
+        <div className="card_contents">
+          <p dangerouslySetInnerHTML={{ __html: hideImages(qna[i].body) }}></p>
+        </div>
         <div className="card_detail">
           <div className="nickname">
             <img src="/user_icon1.png" alt="닉네임" />

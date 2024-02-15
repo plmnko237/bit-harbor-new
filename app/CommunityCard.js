@@ -18,7 +18,11 @@ export default function CommunityCard({ dbData, i }) {
     <Link href={"/community/detail/" + dbData[i].communityId}>
       <div className="tableCard">
         <h2>{dbData[i].title}</h2>
-        <p dangerouslySetInnerHTML={{ __html: hideImages(dbData[i].body) }}></p>
+        <div className="card_contents">
+          <p
+            dangerouslySetInnerHTML={{ __html: hideImages(dbData[i].body) }}
+          ></p>
+        </div>
         <div className="card_detail">
           <div className="nickname">
             <img src="/user_icon1.png" alt="닉네임" />
