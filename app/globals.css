@@ -950,6 +950,7 @@ main {
   width: 100%;
   height: fit-content;
   padding: 40px 20px;
+  line-height: 1.5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 /* 수정,삭제버튼 */
