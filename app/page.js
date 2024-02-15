@@ -69,7 +69,11 @@ export default async function Home() {
         </div>
         <div className="cardList">
           {knowledge &&
-            knowledge.map((a, i) => {
+            knowledge.map((_, i, array) => {
+              // 게시물이 5개 이상이면 배열의 마지막 인덱스 렌더링을 건너뜀.
+              if (knowledge.length >= 5 && i === array.length - 1) {
+                return null;
+              }
               return <KnowledgeCard knowledge={knowledge} i={i} key={i} />;
             })}
         </div>

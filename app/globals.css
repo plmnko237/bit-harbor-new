@@ -397,9 +397,7 @@ main {
   display: block;
   width: 100%;
 }
-.cardList > a:last-child > .topCard {
-  display: none;
-}
+
 /* 지식 카드 컴포넌트 */
 .topCard {
   cursor: pointer;
@@ -1494,9 +1492,7 @@ footer p {
   .cardList > a:last-child > .tableCard {
     display: none;
   }
-  .cardList > a:last-child > .topCard {
-    display: flex;
-  }
+
   .topCard {
     width: 100%;
     max-width: 100%;
@@ -1617,9 +1613,7 @@ footer p {
   .cardList {
     grid-template-columns: repeat(auto-fill, minmax(48%, auto));
   }
-  .cardList > a:last-child > .topCard {
-    display: flex;
-  }
+
   .cardList > a {
     width: 100%;
   }
@@ -1811,9 +1805,6 @@ footer p {
     grid-template-columns: repeat(auto-fill, minmax(100%, auto));
     justify-content: center;
     margin-bottom: 80px;
-  }
-  .cardList > a:last-child > .topCard {
-    display: flex;
   }
   .cardList a {
     width: 100%;
