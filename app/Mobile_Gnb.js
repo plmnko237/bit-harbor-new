@@ -47,13 +47,24 @@ export default function MobileGnb({ session }) {
                   <NextAuthProvider session={session.user}>
                     <div className="loginActive">
                       <span>{session.user.userNickname}님</span>
-                      <Link href={"/mypage"}>MYPAGE</Link>
-                      <LogoutBtn session={session} />
+                      <Link
+                        href={"/mypage"}
+                        onClick={() => setMenuButton(!menuButton)}
+                      >
+                        MYPAGE
+                      </Link>
+                      <LogoutBtn
+                        session={session}
+                        onClick={() => setMenuButton(!menuButton)}
+                      />
                     </div>
                   </NextAuthProvider>
                 ) : (
                   <NextAuthProvider>
-                    <Link href={"/members"}>
+                    <Link
+                      href={"/members"}
+                      onClick={() => setMenuButton(!menuButton)}
+                    >
                       <button className="login">
                         <img src="/person.svg" alt="login" />
                         <span>로그인</span>
