@@ -25,7 +25,10 @@ export default function CommunityCard({ dbData, i }) {
         </div>
         <div className="card_detail">
           <div className="nickname">
-            <img src="/user_icon1.png" alt="닉네임" />
+            <img
+              src={`/user_icon${dbData[i].profileNum}.png`}
+              alt="프로필이미지"
+            />
             <span>{dbData[i].userNickname}</span>
           </div>
           <div className="viewsComment">

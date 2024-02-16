@@ -31,7 +31,7 @@ export default function Comment({ dataItem, session }) {
       // 에러 처리를 추가할 수 있습니다.
     }
   };
-
+  console.log("데이터", comment);
   useEffect(() => {
     // 페이지 로드 시 댓글 불러오기
     fetchComments();
@@ -46,7 +46,10 @@ export default function Comment({ dataItem, session }) {
             <div className="crumbs">
               <div className="card_detail">
                 <div className="nickname">
-                  <img src="/user_icon1.png" alt="닉네임" />
+                  <img
+                    src={`/user_icon${comment[i].profileNum}.png`}
+                    alt="프로필이미지"
+                  />
                   <span>{comment[i].nickName}</span>
                   <span className="commit_time">
                     {"⏱ " + comment[i].postTime + "에 작성"}

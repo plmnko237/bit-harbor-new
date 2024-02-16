@@ -24,7 +24,6 @@ export default async function Detail(props) {
     .then((r) => r.json())
     .then((result) => {
       postSize = result.pageInfo.totalElements;
-      console.log(result.data);
     });
 
   //사용자가 입력한 글 주소
@@ -47,7 +46,10 @@ export default async function Detail(props) {
               <span>{dataItem.postTime} 작성</span>
               <div className="card_detail">
                 <div className="nickname">
-                  <img src="/user_icon1.png" alt="닉네임" />
+                  <img
+                    src={`/user_icon${dataItem.profileNum}.png`}
+                    alt="프로필이미지"
+                  />
                   <span>{dataItem.userNickname}</span>
                 </div>
                 <div className="viewsComment">

@@ -20,7 +20,10 @@ export default function List({ dbData, i }) {
         <div className="card_detail">
           <span className="category">{dbData.category}</span>
           <div className="nickname">
-            <img src="/user_icon1.png" alt="닉네임" />
+            <img
+              src={`/user_icon${dbData.profileNum}.png`}
+              alt="프로필이미지"
+            />
             <span>{dbData.userNickname}</span>
           </div>
           <div className="viewsComment">

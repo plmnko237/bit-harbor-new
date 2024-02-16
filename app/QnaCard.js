@@ -23,7 +23,10 @@ export default function QnaCard({ qna, i }) {
         </div>
         <div className="card_detail">
           <div className="nickname">
-            <img src="/user_icon1.png" alt="닉네임" />
+            <img
+              src={`/user_icon${qna[i].profileNum}.png`}
+              alt="프로필이미지"
+            />
             <span>{qna[i].userNickname}</span>
           </div>
           <div className="viewsComment">

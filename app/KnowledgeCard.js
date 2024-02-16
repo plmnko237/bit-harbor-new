@@ -30,7 +30,10 @@ export default function KnowledgeCard({ knowledge, i }) {
           <div className="tagGroup"></div>
           <div className="card_detail">
             <div className="nickname">
-              <img src="/user_icon1.png" alt="닉네임" />
+              <img
+                src={`/user_icon${knowledge[i].profileNum}.png`}
+                alt="프로필이미지"
+              />
               <span>{knowledge[i].userNickname}</span>
             </div>
             <div className="viewsComment">
