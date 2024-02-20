@@ -3,11 +3,9 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res) {
   let session = await getServerSession(req, res, authOptions);
-  console.log(session);
+
   if (req.method === "POST") {
     let memberId = req.body.memberId;
-
-    console.log("바뀐거", req.body);
 
     let member = {
       password: req.body.password,
@@ -44,17 +42,11 @@ export default async function handler(req, res) {
       // 응답 데이터 확인
       const responseData = await result.json();
 
-      console.log("데이터", responseData.data);
       // 응답이 비어 있다면 에러 처리
       if (!responseData) {
         console.error("API 응답 에러: 서버에서 유효한 JSON을 반환하지 않음1");
         return res.status(500).json("서버 오류");
       }
-      // 세션 업데이트
-      // session.user.userName = member.userName;
-      // session.user.userNickname = member.userNickname;
-      // console.log("바뀐거", session.user.userNickname);
-
       res.status(200).json({ responseData, session });
     } catch (error) {
       console.error("서버 오류:", error);

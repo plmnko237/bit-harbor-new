@@ -121,7 +121,6 @@ const TinyMceContainer = (props) => {
       }}
       initialValue={dataItem && dataItem.communityId ? dataItem.body : ""}
       onEditorChange={(content, editor) => {
-        console.log("에디터 내용 변경:", content);
         props.setBodyText(content);
       }}
     />

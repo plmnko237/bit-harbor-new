@@ -31,7 +31,7 @@ export default function Comment({ dataItem, session }) {
       // 에러 처리를 추가할 수 있습니다.
     }
   };
-  console.log("데이터", comment);
+
   useEffect(() => {
     // 페이지 로드 시 댓글 불러오기
     fetchComments();
@@ -160,7 +160,6 @@ export default function Comment({ dataItem, session }) {
         <button
           className="delBtn"
           onClick={async () => {
-            console.log(content);
             if (session && session.user) {
               if (content.trim() === "") {
                 alert("댓글을 작성해 주세요.");

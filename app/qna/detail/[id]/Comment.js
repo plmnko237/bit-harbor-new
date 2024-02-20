@@ -160,7 +160,6 @@ export default function Comment({ dataItem, session }) {
         <button
           className="delBtn"
           onClick={async () => {
-            console.log(content);
             if (session && session.user) {
               if (content.trim() === "") {
                 alert("댓글을 작성해 주세요.");

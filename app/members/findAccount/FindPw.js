@@ -40,7 +40,6 @@ function FindPw() {
     e.preventDefault();
 
     const verificationCode = { verificationCode: veriCode, email: userEmail };
-    console.log(verificationCode);
 
     const result = await fetch(
       "https://server.bit-harbor.net/members/verify-PW-code",
@@ -74,7 +73,6 @@ function FindPw() {
         password: chkPw1,
         checkPassword: chkPw2,
       };
-      console.log("리셋", resetPassword);
     } else {
       alert("비밀번호가 일치하지 않습니다.");
     }

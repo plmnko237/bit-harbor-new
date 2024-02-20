@@ -21,7 +21,6 @@ function Login() {
       redirect: false,
     });
 
-    console.log("응답", result.status);
     if (result.status === 401) {
       alert("이메일 혹은 비밀번호가 일치하지 않습니다.");
       location.reload();

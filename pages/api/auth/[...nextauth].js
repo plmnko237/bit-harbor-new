@@ -40,7 +40,6 @@ export const authOptions = {
             );
 
             if (!findUser) {
-              console.log("해당 이메일은 없음");
               return null;
             }
 
@@ -98,10 +97,6 @@ export const authOptions = {
       if (trigger === "update") {
         token.user.userNickname = session.userNickname;
         token.user.userName = session.userName;
-
-        console.log("회원", token);
-        console.log("trigger", trigger);
-        console.log("session", session);
       }
 
       return token;

@@ -33,9 +33,7 @@ export default function Textform() {
         setUrl(result.data[0].uploadFileUrl);
       });
   };
-  useEffect(() => {
-    console.log("주소", url);
-  }, [url]);
+
   return (
     <>
       <div className="postBody">

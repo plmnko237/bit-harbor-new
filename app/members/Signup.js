@@ -66,7 +66,6 @@ export default function Signup({ myMember }) {
       body: JSON.stringify(formValues),
     })
       .then((response) => {
-        console.log("응답결과", response);
         if (response.status === 200) {
           alert("회원가입이 완료되었습니다. 로그인 해주세요.");
           location.reload();

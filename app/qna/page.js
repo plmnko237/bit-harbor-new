@@ -30,7 +30,7 @@ export default function Qna() {
       if (response.status === 200) {
         const result = await response.json();
         const getData = result.data;
-        console.log("목록", getData);
+
         const pageInfo = result.pageInfo;
         setPostSize(pageInfo.totalElements);
         setDbData(getData);
@@ -50,7 +50,6 @@ export default function Qna() {
   useEffect(() => {
     let apiUrl;
 
-    console.log("카테고리:", currentCategory);
     if (currentCategory === "전체") {
       apiUrl = `https://server.bit-harbor.net/qna?page=${page}&size=${size}`;
     } else {

@@ -3,7 +3,6 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res) {
   let session = await getServerSession(req, res, authOptions);
-  console.log("받아온거", req.body);
 
   if (req.method == "POST") {
     if (!req.body || req.body.body === "") {

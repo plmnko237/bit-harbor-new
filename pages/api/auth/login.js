@@ -13,8 +13,6 @@ export default async function handler(req, res) {
         }
       );
 
-      console.log("결과확인", result);
-
       if (!result.ok) {
         const errorText = await result.text();
         console.error("API 응답 에러:", errorText);
@@ -24,8 +22,6 @@ export default async function handler(req, res) {
       // 응답 데이터 확인
       const responseData = await result.text();
 
-      console.log("Response Data:", responseData);
-
       // 응답이 비어 있다면 에러 처리
       if (!responseData) {
         console.error("API 응답 에러: 서버에서 유효한 JSON을 반환하지 않음1");
@@ -34,8 +30,6 @@ export default async function handler(req, res) {
 
       // 로그인한 사용자의 정보
       let userData = JSON.parse(responseData);
-
-      console.log("UserData:", userData);
 
       if (!userData || !userData.token) {
         console.error("API 응답 에러: 서버에서 유효한 JSON을 반환하지 않음2");

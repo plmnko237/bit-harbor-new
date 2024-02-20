@@ -10,7 +10,7 @@ export default function LogoutBtn() {
       className="login"
       onClick={() => {
         signOut({ callbackUrl: "/members" });
-        console.log("로그아웃", session.user);
+
         sessionStorage.clear();
         localStorage.clear();
       }}
