@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       // 전체 요청 바디를 JSON 문자열로 변환
       const result = JSON.stringify(req.body);
 
-      const apiResponse = await fetch("https://server.bit-harbor.net/qna", {
+      const apiResponse = await fetch(process.env.BACK_END_DOMAIN_QNA, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

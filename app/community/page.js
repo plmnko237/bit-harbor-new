@@ -128,6 +128,7 @@ export default function Community() {
                 onClick={() => {
                   if (session.data == null) {
                     alert("로그인해주세요.");
+                    router.push("/members");
                   } else {
                     router.push("/community/write");
                   }
@@ -139,11 +140,15 @@ export default function Community() {
             </div>
           </div>
           <div className="container">
-            <ul>
-              {dbData.map((item, i) => (
-                <List key={i} dbData={item} />
-              ))}
-            </ul>
+            {dbData.length > 0 ? (
+              <ul>
+                {dbData.map((item, i) => (
+                  <List key={i} dbData={item} />
+                ))}
+              </ul>
+            ) : (
+              <ul className="loading">게시물이 없습니다.</ul>
+            )}
           </div>
           <PageNumber
             postSize={postSize}

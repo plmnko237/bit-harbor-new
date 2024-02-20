@@ -53,7 +53,7 @@ const TinyMceContainer = (props) => {
       formData.append("files", blobInfo.blob(), blobInfo.filename());
       formData.append("uploadTo", "community");
 
-      xhr.open("POST", "https://server.bit-harbor.net/s3/uploads", {
+      xhr.open("POST", process.env.BACK_END_DOMAIN_IMG_UPLOAD, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -86,7 +86,7 @@ const TinyMceContainer = (props) => {
         powerpaste_allow_local_images: true,
         automatic_uploads: true,
         file_picker_types: "file image media",
-        images_upload_url: "https://server.bit-harbor.net/s3/uploads",
+        images_upload_url: process.env.BACK_END_DOMAIN_IMG_UPLOAD,
         images_upload_base_path: "/community",
         images_upload_handler: image_upload_handler,
         file_picker_callback: (cb, value, meta) => {

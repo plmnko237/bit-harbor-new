@@ -10,6 +10,9 @@ export default async function Detail(props) {
   const Comment = dynamic(() => import("./Comment"), {
     ssr: false,
   });
+  const Crumb = dynamic(() => import("./Crumb"), {
+    ssr: false,
+  });
   let session = await getServerSession(authOptions);
 
   //전체 게시물 개수 가져오기
@@ -45,28 +48,7 @@ export default async function Detail(props) {
           <div className="detail_title">
             <h4>📝 Detail • {dataItem.category}</h4>
             <h2>{dataItem.title}</h2>
-            <div className="crumbs">
-              <span>{dataItem.postTime} 작성</span>
-              <div className="card_detail">
-                <div className="nickname">
-                  <img
-                    src={`/user_icon${dataItem.profileNum}.png`}
-                    alt="프로필이미지"
-                  />
-                  <span>{dataItem.userNickname}</span>
-                </div>
-                <div className="viewsComment">
-                  <div className="views">
-                    <img src="/view.png" alt="조회수" />
-                    <span>{dataItem.view}</span>
-                  </div>
-                  <div className="comment">
-                    <img src="/comment.png" alt="댓글" />
-                    <span>{dataItem.commentCount}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Crumb dataItem={dataItem} />
           </div>
           {/* 내용영역 */}
           <p

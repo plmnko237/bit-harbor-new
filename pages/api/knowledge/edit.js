@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       const result = JSON.stringify(req.body);
 
       const apiResponse = await fetch(
-        "https://server.bit-harbor.net/knowledge/" + req.body.knowledgeId,
+        process.env.BACK_END_DOMAIN_KNOWLEDGE + "/" + req.body.knowledgeId,
         {
           method: "PATCH",
           headers: {

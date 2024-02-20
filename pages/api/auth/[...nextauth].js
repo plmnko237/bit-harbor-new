@@ -1,7 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import NaverProvider from "next-auth/providers/naver";
-import GoogleProvider from "next-auth/providers/google";
 import { membersData } from "@/util/db_member";
 
 export const authOptions = {
@@ -19,16 +17,13 @@ export const authOptions = {
 
         try {
           // 서버에 인증 요청을 보냄
-          const response = await fetch(
-            "https://server.bit-harbor.net/members/login",
-            {
-              method: "POST",
-              body: bodyData,
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(process.env.BACK_END_DOMAIN_LOGIN, {
+            method: "POST",
+            body: bodyData,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           if (response.ok) {
             const authorization = response.headers.get("authorization");

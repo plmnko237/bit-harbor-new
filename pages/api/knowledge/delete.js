@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
     try {
       const apiResponse = await fetch(
-        "https://server.bit-harbor.net/knowledge/" + result.knowledgeId,
+        process.env.BACK_END_DOMAIN_KNOWLEDGE + "/" + result.knowledgeId,
         {
           method: "DELETE",
           headers: {

@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       const result = JSON.stringify(req.body);
 
       const apiResponse = await fetch(
-        "https://server.bit-harbor.net/qna/" + req.body.qnaId,
+        process.env.BACK_END_DOMAIN_QNA + "/" + req.body.qnaId,
         {
           method: "PATCH",
           headers: {

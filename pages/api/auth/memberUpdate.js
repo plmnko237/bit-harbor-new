@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     try {
       const result = await fetch(
-        `https://server.bit-harbor.net/members/${memberId}`,
+        process.env.BACK_END_DOMAIN_MEMBER_UPDATE + memberId,
         {
           method: "PATCH",
           headers: {

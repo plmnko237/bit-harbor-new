@@ -15,19 +15,16 @@ export default async function handler(req, res) {
       // 전체 요청 바디를 JSON 문자열로 변환
       const result = JSON.stringify(req.body);
 
-      const apiResponse = await fetch(
-        "https://server.bit-harbor.net/community",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: session.user.authorization,
-            refresh: session.user.refresh,
-          },
-          mode: "cors",
-          body: result,
-        }
-      );
+      const apiResponse = await fetch(process.env.BACK_END_DOMAIN_COMMUNITY, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: session.user.authorization,
+          refresh: session.user.refresh,
+        },
+        mode: "cors",
+        body: result,
+      });
       if (!apiResponse.ok) {
         const errorText = await apiResponse.text();
         console.error("API 응답 에러:", errorText);

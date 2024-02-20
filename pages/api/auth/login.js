@@ -1,17 +1,14 @@
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const result = await fetch(
-        "https://server.bit-harbor.net/members/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: JSON.stringify(req.body),
-        }
-      );
+      const result = await fetch(process.env.BACK_END_DOMAIN_LOGIN, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify(req.body),
+      });
 
       if (!result.ok) {
         const errorText = await result.text();

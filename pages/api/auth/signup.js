@@ -4,7 +4,7 @@ export default async function handler(req, res) {
       req.body.profileNum = 1;
       const result = JSON.stringify(req.body);
 
-      const apiResponse = await fetch("https://server.bit-harbor.net/members", {
+      const apiResponse = await fetch(process.env.BACK_END_DOMAIN_SIGNUP, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
