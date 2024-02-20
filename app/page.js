@@ -89,7 +89,6 @@ export default async function Home() {
           </div>
         </div>
         <div className="cardList">
-          {/* qna.slice(qna.length - 6) */}
           {qna &&
             qna.map((a, i) => {
               return <QnaCard qna={qna} i={i} key={i} />;

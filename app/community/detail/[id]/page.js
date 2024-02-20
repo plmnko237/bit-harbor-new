@@ -56,7 +56,8 @@ export default async function Detail(props) {
             dangerouslySetInnerHTML={{ __html: dataItem.body }}
           ></p>
           {/* 수정, 삭제버튼 */}
-          <EditDelBtn dataItem={dataItem} session={session} />
+          {session ? <EditDelBtn dataItem={dataItem} session={session} /> : ""}
+
           {/* 게시판으로 돌아가는 링크 */}
           {/* <div className="detail-pager">
             <Link

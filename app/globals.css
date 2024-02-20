@@ -821,6 +821,10 @@ main {
   color: #373f41;
   line-height: 1.6;
   text-transform: capitalize;
+  transition: color 0.3s;
+}
+.conList-top p:hover {
+  color: #4730d9;
 }
 .conList-body {
   width: 100%;
