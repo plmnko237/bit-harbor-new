@@ -139,7 +139,7 @@ export default function MyPage() {
                   >
                     <img
                       src={`/user_icon${profileNum}_big.png`}
-                      alt={profileNum}
+                      alt={"프로필" + profileNum}
                       width={80}
                     />
                   </button>

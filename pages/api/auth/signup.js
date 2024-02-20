@@ -1,11 +1,8 @@
 export default async function handler(req, res) {
   if (req.method == "POST") {
-    console.log("데이터 잘왔다 : " + req.body);
-
     try {
       req.body.profileNum = 1;
       const result = JSON.stringify(req.body);
-      console.log("보낼거", result);
 
       const apiResponse = await fetch("https://server.bit-harbor.net/members", {
         method: "POST",

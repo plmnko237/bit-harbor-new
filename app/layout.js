@@ -77,7 +77,7 @@ export default async function RootLayout({ children }) {
                 <li>
                   <Link
                     href={
-                      "https://www.notion.so/Bit-Harbor-04b609ff07564e41a5cdbb3f54523c8f?pvs=4"
+                      "https://zany-dish-c5c.notion.site/Bit-Harbor-04b609ff07564e41a5cdbb3f54523c8f?pvs=4"
                     }
                     title="notion으로 바로가기"
                   >

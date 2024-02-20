@@ -133,7 +133,7 @@ export default function Signup({ myMember }) {
         <input
           type="text"
           name="userNickname"
-          placeholder="닉네임(공백 없이 입력해주세요.)"
+          placeholder="닉네임"
           required
           onChange={handleInputChange}
         />
