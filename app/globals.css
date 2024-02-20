@@ -787,6 +787,13 @@ main {
   width: 100%;
   height: fit-content;
 }
+.container > ul > a {
+  display: block;
+  border-top: 1px solid var(--black-10, rgba(0, 0, 0, 0.1));
+}
+.container > ul > a:last-child {
+  border-bottom: 1px solid var(--black-10, rgba(0, 0, 0, 0.1));
+}
 .container .conList {
   display: flex;
   height: fit-content;
@@ -795,11 +802,7 @@ main {
   justify-content: center;
   align-items: flex-start;
   row-gap: 9px;
-  border-top: 1px solid var(--black-10, rgba(0, 0, 0, 0.1));
   background: #fff;
-}
-.conList:last-child {
-  border-bottom: 1px solid var(--black-10, rgba(0, 0, 0, 0.1));
 }
 .conList > .conList-top {
   display: flex;
@@ -823,7 +826,7 @@ main {
   text-transform: capitalize;
   transition: color 0.3s;
 }
-.conList-top p:hover {
+.conList:hover .conList-top p {
   color: #4730d9;
 }
 .conList-body {
