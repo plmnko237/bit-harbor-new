@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^4.3.2",
+    "@vercel/speed-insights": "^1.0.10",
     "aws": "^0.0.3-2",
     "aws-sdk": "^2.1502.0",
     "axios": "^1.6.2",

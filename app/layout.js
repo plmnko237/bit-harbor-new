@@ -9,6 +9,7 @@ import { membersData } from "@/util/db_member";
 import Gnb from "./Gnb";
 import { NextAuthProvider } from "./providers";
 import MobileGnb from "./Mobile_Gnb";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +60,7 @@ export default async function RootLayout({ children }) {
         </header>
 
         <NextAuthProvider>{children}</NextAuthProvider>
+        <SpeedInsights />
         <footer>
           <div className="con">
             <h2>
