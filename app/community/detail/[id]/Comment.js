@@ -56,7 +56,7 @@ export default function Comment({ dataItem, session }) {
                   </span>
                 </div>
               </div>
-              {session && session.user.nickName === comment[i].nickName ? (
+              {session && session.user.userNickname === comment[i].nickName ? (
                 <div className="edit_del">
                   <div
                     onClick={() => {
@@ -69,28 +69,31 @@ export default function Comment({ dataItem, session }) {
                   <span>|</span>
                   <div
                     onClick={async (e) => {
-                      try {
-                        await fetch(
-                          `https://server.bit-harbor.net/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
-                          {
-                            method: "DELETE",
-                            headers: {
-                              "Content-Type": "application/json",
-                              authorization: session.user.authorization,
-                              refresh: session.user.refresh,
-                            },
-                            mode: "cors",
-                            body: JSON.stringify({
-                              content: editedCommentContent,
-                            }),
-                          }
-                        );
-                        const updatedComments = comment.filter(
-                          (_, index) => index !== i
-                        );
-                        setComment(updatedComments);
-                      } catch {
-                        console.error("댓글 삭제 오류:", error);
+                      let commentConfirm = confirm("댓글을 삭제하시겠습니까?");
+                      if (commentConfirm) {
+                        try {
+                          await fetch(
+                            `https://server.bit-harbor.net/community/${dataItem.communityId}/comment/${comment[i].commentId}`,
+                            {
+                              method: "DELETE",
+                              headers: {
+                                "Content-Type": "application/json",
+                                authorization: session.user.authorization,
+                                refresh: session.user.refresh,
+                              },
+                              mode: "cors",
+                              body: JSON.stringify({
+                                content: editedCommentContent,
+                              }),
+                            }
+                          );
+                          const updatedComments = comment.filter(
+                            (_, index) => index !== i
+                          );
+                          setComment(updatedComments);
+                        } catch {
+                          console.error("댓글 삭제 오류:", error);
+                        }
                       }
                     }}
                   >
