@@ -43,7 +43,7 @@ export default function Comment({ dataItem, session }) {
   return (
     <section className="detailComments">
       <h4>💬 Comments</h4>
-      {comment && comment.length > 0 ? (
+      {comment.length > 0 ? (
         comment.map((a, i) => (
           <div className="commit" key={i}>
             <div className="crumbs">
@@ -59,14 +59,12 @@ export default function Comment({ dataItem, session }) {
                   </span>
                 </div>
               </div>
-              {session && session.user.nickName == comment[i].nickName ? (
+              {session && session.user.nickName === comment[i].nickName ? (
                 <div className="edit_del">
                   <div
                     onClick={() => {
-                      if (session.user.nickName == comment[i].nickName) {
-                        setEditingCommentIndex(i);
-                        setEditedCommentContent(comment[i].content);
-                      }
+                      setEditingCommentIndex(i);
+                      setEditedCommentContent(comment[i].content);
                     }}
                   >
                     수정

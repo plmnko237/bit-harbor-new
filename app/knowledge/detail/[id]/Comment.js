@@ -56,7 +56,7 @@ export default function Comment({ dataItem, session }) {
                   </span>
                 </div>
               </div>
-              {session && session.user.nickName == comment[i].nickName ? (
+              {session && session.user.nickName === comment[i].nickName ? (
                 <div className="edit_del">
                   <div
                     onClick={() => {
