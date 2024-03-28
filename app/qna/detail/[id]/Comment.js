@@ -37,10 +37,13 @@ export default function Comment({ dataItem, session }) {
     fetchComments();
   }, [dataItem.qnaId, session]);
 
+  console.log(session);
+  console.log(comment);
+
   return (
     <section className="detailComments">
       <h4>💬 Comments</h4>
-      {comment.length > 0 ? (
+      {comment && comment.length > 0 ? (
         comment.map((a, i) => (
           <div className="commit" key={i}>
             <div className="crumbs">
@@ -56,46 +59,50 @@ export default function Comment({ dataItem, session }) {
                   </span>
                 </div>
               </div>
-              <div className="edit_del">
-                <div
-                  onClick={() => {
-                    setEditingCommentIndex(i);
-                    setEditedCommentContent(comment[i].content);
-                  }}
-                >
-                  수정
+              {session && session.user.nickName == comment[i].nickName ? (
+                <div className="edit_del">
+                  <div
+                    onClick={() => {
+                      if (session.user.nickName == comment[i].nickName) {
+                        setEditingCommentIndex(i);
+                        setEditedCommentContent(comment[i].content);
+                      }
+                    }}
+                  >
+                    수정
+                  </div>
+                  <span>|</span>
+                  <div
+                    onClick={async (e) => {
+                      try {
+                        await fetch(
+                          `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comment/${comment[i].commentId}`,
+                          {
+                            method: "DELETE",
+                            headers: {
+                              "Content-Type": "application/json",
+                              authorization: session.user.authorization,
+                              refresh: session.user.refresh,
+                            },
+                            mode: "cors",
+                            body: JSON.stringify({
+                              content: editedCommentContent,
+                            }),
+                          }
+                        );
+                        const updatedComments = comment.filter(
+                          (_, index) => index !== i
+                        );
+                        setComment(updatedComments);
+                      } catch {
+                        console.error("댓글 삭제 오류:", error);
+                      }
+                    }}
+                  >
+                    삭제
+                  </div>
                 </div>
-                <span>|</span>
-                <div
-                  onClick={async (e) => {
-                    try {
-                      await fetch(
-                        `https://server.bit-harbor.net/qna/${dataItem.qnaId}/comment/${comment[i].commentId}`,
-                        {
-                          method: "DELETE",
-                          headers: {
-                            "Content-Type": "application/json",
-                            authorization: session.user.authorization,
-                            refresh: session.user.refresh,
-                          },
-                          mode: "cors",
-                          body: JSON.stringify({
-                            content: editedCommentContent,
-                          }),
-                        }
-                      );
-                      const updatedComments = comment.filter(
-                        (_, index) => index !== i
-                      );
-                      setComment(updatedComments);
-                    } catch {
-                      console.error("댓글 삭제 오류:", error);
-                    }
-                  }}
-                >
-                  삭제
-                </div>
-              </div>
+              ) : null}
             </div>
             {editingCommentIndex === i ? (
               <div className="edit_comment">
