@@ -57,8 +57,6 @@ export default function Comment({ dataItem, session }) {
                 </div>
               </div>
               <div className="edit_del">
-                <div>댓글</div>
-                <span>|</span>
                 <div
                   onClick={() => {
                     setEditingCommentIndex(i);
