@@ -397,7 +397,9 @@ main {
   display: block;
   width: 100%;
 }
-
+.cardList > a:last-of-type > .topCard {
+  display: none;
+}
 /* 지식 카드 컴포넌트 */
 .topCard {
   cursor: pointer;
@@ -1629,9 +1631,11 @@ footer p {
   .cardList {
     grid-template-columns: repeat(auto-fill, minmax(48%, auto));
   }
-
   .cardList > a {
     width: 100%;
+  }
+  .cardList > a:last-of-type > .topCard {
+    display: flex;
   }
   .topCard {
     width: 100%;
