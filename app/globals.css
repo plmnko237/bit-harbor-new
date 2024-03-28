@@ -1787,8 +1787,8 @@ footer p {
   }
   .main-visual {
     height: 600px;
-    background: url(/m_visual.png) no-repeat center 325px;
-    background-size: 100%;
+    background: url(/m_visual.png) no-repeat center 100%;
+    background-size: 70%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
