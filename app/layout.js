@@ -5,7 +5,6 @@ import Link from "next/link";
 import LogoutBtn from "./members/LogoutBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { membersData } from "@/util/db_member";
 import Gnb from "./Gnb";
 import { NextAuthProvider } from "./providers";
 import MobileGnb from "./Mobile_Gnb";
