@@ -62,10 +62,9 @@ const TinyMceContainer = (props) => {
     });
 
   let dataItem = props.dataItem;
-  let tinyAppKey = process.env.TINY_MCE_APP_KEY;
   return (
     <Editor
-      apiKey={tinyAppKey}
+      apiKey="4sn3xmrbx9qp502lmio9ce9bjobx7f2iop67azbgzic6owc6"
       init={{
         selector: "tinyEditor",
         plugins:
