@@ -1377,6 +1377,7 @@ footer p {
   overflow: hidden;
   padding: 20px;
   border-radius: 20px;
+  background-color: aliceblue;
 }
 .myImg > img {
   width: 100%;
