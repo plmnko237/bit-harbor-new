@@ -35,11 +35,13 @@ export default async function Home() {
         <div className="topCategory">
           <h3>지식</h3>
           <div className="secMenu">
-            <Link href={`/knowledge`}>전체</Link>
-            <Link href={`/knowledge`}>Tech뉴스</Link>
+            <Link href={`/knowledge`} className="view_more">
+              <span>view more +</span>
+            </Link>
+            {/* <Link href={`/knowledge`}>Tech뉴스</Link>
             <Link href={"/knowledge"}>팁</Link>
             <Link href={"/knowledge"}>칼럼</Link>
-            <Link href={"/knowledge"}>리뷰</Link>
+            <Link href={"/knowledge"}>리뷰</Link> */}
           </div>
         </div>
         <div className="cardList">
@@ -57,10 +59,13 @@ export default async function Home() {
         <div className="topCategory">
           <h3 style={{ fontFamily: "Inter", letterSpacing: 0 }}>Q&amp;A</h3>
           <div className="secMenu">
-            <Link href={"/qna"}>기술</Link>
+            <Link href={`/qna`} className="view_more">
+              <span>view more +</span>
+            </Link>
+            {/* <Link href={"/qna"}>기술</Link>
             <Link href={"/qna"}>커리어</Link>
             <Link href={"/qna"}>기타</Link>
-            <Link href={"/qna"}>전체</Link>
+            <Link href={"/qna"}>전체</Link> */}
           </div>
         </div>
         <div className="cardList">
@@ -74,8 +79,11 @@ export default async function Home() {
         <div className="topCategory">
           <h3>커뮤니티</h3>
           <div className="secMenu">
-            <Link href={"/community"}>질문&amp;답변</Link>
-            <Link href={"/community"}>모임&amp;스터디</Link>
+            <Link href={`/community`} className="view_more">
+              <span>view more +</span>
+            </Link>
+            {/* <Link href={"/community"}>질문&amp;답변</Link>
+            <Link href={"/community"}>모임&amp;스터디</Link> */}
           </div>
         </div>
         <div className="cardList">
