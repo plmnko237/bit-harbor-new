@@ -49,11 +49,12 @@ const TinyMceContainer = (props) => {
         );
       };
 
+      const imageUploadUrl = process.env.BACK_END_DOMAIN_IMG_UPLOAD;
       const formData = new FormData();
       formData.append("files", blobInfo.blob(), blobInfo.filename());
       formData.append("uploadTo", "community");
 
-      xhr.open("POST", process.env.BACK_END_DOMAIN_IMG_UPLOAD, {
+      xhr.open("POST", imageUploadUrl, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -65,10 +66,10 @@ const TinyMceContainer = (props) => {
     });
 
   let dataItem = props.dataItem;
-
+  let tinyAppKey = process.env.TINY_MCE_APP_KEY;
   return (
     <Editor
-      apiKey="4sn3xmrbx9qp502lmio9ce9bjobx7f2iop67azbgzic6owc6"
+      apiKey={tinyAppKey}
       init={{
         selector: "tinyEditor",
         plugins:
