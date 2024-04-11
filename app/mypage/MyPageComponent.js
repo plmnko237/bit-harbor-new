@@ -52,6 +52,7 @@ export default function MyPageComponent() {
       [name]: value,
     }));
   };
+  //로컬스토리지에서 세션정보 가져오기
   const authorize = localStorage.getItem("authorization");
   const refresh = localStorage.getItem("refresh");
 
@@ -224,7 +225,5 @@ export default function MyPageComponent() {
         </section>
       </section>
     );
-  } else {
-    return <div className="loading">Loading...</div>;
   }
 }
