@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function KnowledgeCard({ knowledge, i }) {
-  const [imgdata, setImgdata] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
+  const backgroundStyle = {
+    backgroundImage: `url(${knowledge[i].imgURL})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  };
 
   const hideImages = (html) => {
     const parser = new DOMParser();
@@ -17,11 +23,12 @@ export default function KnowledgeCard({ knowledge, i }) {
 
     return doc.body.innerHTML;
   };
-
+  useEffect(() => {
+    setImageUrl(knowledge[i].imgURL);
+  }, []);
   return (
     <Link href={"/knowledge/detail/" + knowledge[i].knowledgeId}>
-      <div className="topCard">
-        <img src={knowledge[i].imgURL} alt="대표이미지" className="backImg" />
+      <div className="topCard" style={backgroundStyle}>
         <div className="txtBox">
           <h2>{knowledge[i].title}</h2>
           <p

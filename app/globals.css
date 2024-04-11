@@ -263,7 +263,7 @@ h1 {
 /* main */
 main {
   width: 100%;
-  padding: 0rem 10.3125rem;
+  padding: 0rem 9vw;
   font-family: "Noto Sans KR", sans-serif;
 }
 /* main-visual */
@@ -364,7 +364,6 @@ main {
   gap: 20px;
   color: #373f41;
 }
-
 .secMenu > h3 {
   font-size: 20px;
   font-weight: 600;
@@ -419,25 +418,28 @@ main {
   transform: scale(1);
 }
 /* 지식 카드 컨테이너 */
+#first_card_list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18.8%, auto));
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#first_card_list > a:last-of-type {
+  display: none;
+}
 .cardList {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
   width: 100%;
   height: auto;
   gap: 20px;
 }
-.cardList > a {
-  display: block;
-  width: 100%;
-}
-.cardList > a:last-of-type > .topCard {
-  display: none;
-}
 /* 지식 카드 컴포넌트 */
 .topCard {
   cursor: pointer;
-  width: 298px;
-  max-width: 303px;
+  width: 100%;
   position: relative;
   top: 0;
   display: flex;
@@ -450,25 +452,12 @@ main {
   border-radius: 10px;
   background-color: #eee;
   transition: all 0.3s;
-  /* 컨텐츠-drop shadow */
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
-.topCard .backImg {
-  width: fit-content;
-  max-width: 140%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -50%;
   filter: brightness(80%);
-  transition: filter 0.3s;
 }
 .topCard:hover {
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.3);
   top: -10px;
-}
-.topCard:hover .backImg {
   filter: brightness(100%);
 }
 .txtBox {
@@ -545,7 +534,6 @@ main {
   cursor: pointer;
   box-sizing: border-box;
   display: flex;
-  width: 378px;
   height: 180px;
   padding: 26px 24px;
   position: relative;
@@ -1389,7 +1377,6 @@ footer p {
   overflow: hidden;
   padding: 20px;
   border-radius: 20px;
-  background-color: #dbf6ff;
 }
 .myImg > img {
   width: 100%;
@@ -1514,7 +1501,7 @@ footer p {
   min-height: 400px;
 }
 /* PC */
-@media screen and (min-width: 1025px) and (max-width: 1440px) {
+@media screen and (min-width: 1025px) and (max-width: 1428px) {
   header {
     padding: 0rem 3rem;
   }
@@ -1538,6 +1525,13 @@ footer p {
   .secCon {
     padding: 40px 3rem;
   }
+  /* 지식 카드 컨테이너 */
+  #first_card_list {
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  }
+  #first_card_list > a:last-of-type {
+    display: block;
+  }
   .cardList {
     grid-template-columns: repeat(auto-fill, minmax(31%, auto));
   }
@@ -1547,17 +1541,6 @@ footer p {
   }
   .cardList > a:last-child > .tableCard {
     display: none;
-  }
-
-  .topCard {
-    width: 100%;
-    max-width: 100%;
-  }
-  .topCard .backImg {
-    width: 107%;
-  }
-  .tableCard {
-    width: auto;
   }
   /* 게시판 */
   .topSec_detail {
@@ -1665,6 +1648,13 @@ footer p {
   }
   .secCon {
     padding: 40px 2rem;
+  }
+  /* 지식 카드 컨테이너 */
+  #first_card_list {
+    grid-template-columns: repeat(auto-fill, minmax(40%, auto));
+  }
+  #first_card_list > a:last-of-type {
+    display: block;
   }
   .cardList {
     grid-template-columns: repeat(auto-fill, minmax(48%, auto));
@@ -1843,6 +1833,12 @@ footer p {
   }
   .secCon {
     padding: 0 1rem;
+  }
+  #first_card_list {
+    grid-template-columns: repeat(auto-fill, minmax(100%, auto));
+  }
+  #first_card_list > a:last-of-type {
+    display: block;
   }
   .topCategory {
     width: 100%;

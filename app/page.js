@@ -44,7 +44,7 @@ export default async function Home() {
             <Link href={"/knowledge"}>리뷰</Link> */}
           </div>
         </div>
-        <div className="cardList">
+        <div id="first_card_list">
           {knowledge &&
             knowledge.map((_, i, array) => {
               // 게시물이 5개 이상이면 배열의 마지막 인덱스 렌더링을 건너뜀.
