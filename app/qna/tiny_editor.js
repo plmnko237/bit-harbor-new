@@ -1,6 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 
 const TinyMceContainer = (props) => {
+  const editorKey = process.env.TINY_MCE_APP_KEY;
   const image_upload_handler = (blobInfo, progress) =>
     new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -44,11 +45,10 @@ const TinyMceContainer = (props) => {
             xhr.status
         );
       };
-
       const imageUploadUrl = process.env.BACK_END_DOMAIN_IMG_UPLOAD;
       const formData = new FormData();
       formData.append("files", blobInfo.blob(), blobInfo.filename());
-      formData.append("uploadTo", "knowledge");
+      formData.append("uploadTo", "qna");
 
       xhr.open("POST", imageUploadUrl, {
         headers: {
@@ -64,7 +64,7 @@ const TinyMceContainer = (props) => {
   let dataItem = props.dataItem;
   return (
     <Editor
-      apiKey="4sn3xmrbx9qp502lmio9ce9bjobx7f2iop67azbgzic6owc6"
+      apiKey={editorKey}
       init={{
         selector: "tinyEditor",
         plugins:
@@ -83,7 +83,7 @@ const TinyMceContainer = (props) => {
         automatic_uploads: true,
         file_picker_types: "file image media",
         images_upload_url: process.env.BACK_END_DOMAIN_IMG_UPLOAD,
-        images_upload_base_path: "/knowledge",
+        images_upload_base_path: "/qna",
         images_upload_handler: image_upload_handler,
         file_picker_callback: (cb, value, meta) => {
           const input = document.createElement("input");
@@ -115,7 +115,7 @@ const TinyMceContainer = (props) => {
           input.click();
         },
       }}
-      initialValue={dataItem && dataItem.knowledgeId ? dataItem.body : ""}
+      initialValue={dataItem && dataItem.qnaId ? dataItem.body : ""}
       onEditorChange={(content, editor) => {
         props.setBodyText(content);
       }}

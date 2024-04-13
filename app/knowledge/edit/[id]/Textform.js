@@ -1,5 +1,5 @@
 "use client";
-import TinyMceContainer from "@/pages/api/knowledge/tiny_editor";
+import TinyMceContainer from "../../tiny_editor";
 import { useEffect, useState } from "react";
 import _debounce from "lodash/debounce";
 

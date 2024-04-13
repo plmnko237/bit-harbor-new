@@ -1,5 +1,5 @@
 "use client";
-import TinyMceContainer from "@/pages/api/knowledge/tiny_editor";
+import TinyMceContainer from "../tiny_editor";
 import { useEffect, useState } from "react";
 import _debounce from "lodash/debounce";
 
@@ -52,12 +52,7 @@ export default function Textform() {
       </div>
       <div className="tagarea">
         <span>대표이미지 등록 :</span>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          placeholder="하이"
-        />
+        <input type="file" accept="image/*" onChange={handleFileChange} />
       </div>
       <input
         type="text"

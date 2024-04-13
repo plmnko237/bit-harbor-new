@@ -1,5 +1,5 @@
 "use client";
-import TinyMceContainer from "@/pages/api/qna/tiny_editor";
+import TinyMceContainer from "../tiny_editor";
 import { useState } from "react";
 import _debounce from "lodash/debounce";
 

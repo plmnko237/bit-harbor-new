@@ -1,6 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 
 const TinyMceContainer = (props) => {
+  const editorKey = process.env.TINY_MCE_APP_KEY;
   const image_upload_handler = (blobInfo, progress) =>
     new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -68,7 +69,7 @@ const TinyMceContainer = (props) => {
   let dataItem = props.dataItem;
   return (
     <Editor
-      apiKey="4sn3xmrbx9qp502lmio9ce9bjobx7f2iop67azbgzic6owc6"
+      apiKey={editorKey}
       init={{
         selector: "tinyEditor",
         plugins:
