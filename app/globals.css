@@ -421,7 +421,7 @@ main {
 #first_card_list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18.8%, auto));
+  grid-template-columns: repeat(auto-fill, minmax(18%, auto));
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
