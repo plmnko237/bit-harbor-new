@@ -35,12 +35,16 @@
 - **진행 기간** : 23.11 ~ 24.01
 - **서비스 URL** : [BitHarbor 바로 가기](https://bit-harbor.vercel.app/)
 - **노션 문서** : [Notion 바로 가기](https://www.notion.so/Bit-Harbor-04b609ff07564e41a5cdbb3f54523c8f)
+- **기술 회고록** : [Notion 바로가기](https://zany-dish-c5c.notion.site/Bit-Harbor-1-15e62e89b9d94fda971cd02a9ff0a3ce?pvs=74)
+
+<br>
+<br>
 
 ## 🚩 기술스택
 
 ### 🌅 Front-end
 
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white"> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
 <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
 
 ### 🌄 Back-end
@@ -54,6 +58,8 @@
 <img src="https://img.shields.io/badge/Amazon Route 53-8C4FFF?style=for-the-badge&logo=Amazon Route 53&logoColor=white">
 <img src="https://img.shields.io/badge/Amazon CodeDeploy-FF9900?style=for-the-badge&logo=Amazon CodeDeploy&logoColor=white">
 <img src="https://img.shields.io/badge/Amazon CloudFront-527FFF?style=for-the-badge&logo=Amazon CodeDeploy&logoColor=white">
+<br>
+<br>
 
 ## 🖥 구현 이미지
 
