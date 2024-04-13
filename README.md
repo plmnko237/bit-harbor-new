@@ -32,7 +32,7 @@
 ## 🚩 프로젝트 개요
 
 - **프로젝트 명** : BitHarbor
-- **진행 기간** : 23.11 ~ 24.01
+- **진행 기간** : 23.11 ~ 24.02
 - **서비스 URL** : [BitHarbor 바로 가기](https://bit-harbor.vercel.app/)
 - **노션 문서** : [Notion 바로 가기](https://www.notion.so/Bit-Harbor-04b609ff07564e41a5cdbb3f54523c8f)
 - **기술 회고록** : [Notion 바로가기](https://zany-dish-c5c.notion.site/Bit-Harbor-1-15e62e89b9d94fda971cd02a9ff0a3ce?pvs=74)
