@@ -9,6 +9,7 @@ export default function Textform() {
   // debounce 함수를 사용하여 500ms 간격으로만 업데이트 처리
   const debouncedSetBodyText = _debounce(setBodyText, 1000);
   let [url, setUrl] = useState("");
+  const imageUploadUrl = process.env.BACK_END_DOMAIN_IMG_UPLOAD;
 
   const handleFileChange = async (e) => {
     let file = e.target.files[0];
@@ -24,7 +25,7 @@ export default function Textform() {
     formData.append("files", file);
     formData.append("uploadTo", "knowledge");
 
-    let res = await fetch("https://server.bit-harbor.net/s3/uploads", {
+    let res = await fetch(imageUploadUrl, {
       method: "POST",
       body: formData,
     })
